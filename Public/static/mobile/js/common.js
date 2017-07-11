@@ -29,21 +29,18 @@ function AjaxAddCart(goods_id,num,to_catr)
 			   {
 				   location.href = "/index.php?m=Mobile&c=Cart&a=cart";   
 			   }
-			    cart_num = parseInt($('#tp_cart_info').html())+parseInt($('#number').val());
-			    $('#tp_cart_info').html(cart_num)
-			    /*layer.open({
-			        content: '添加成功！',
-			        btn: ['再逛逛', '去购物车'],
-			        shadeClose: false,
-			        yes: function(){
-			            layer.closeAll();
-			        }, no: function(){
-			        	location.href = "/index.php?m=Mobile&c=Cart&a=cart";
-			        }
-			    });*/
+			    // cart_num = parseInt($('#tp_cart_info').html())+parseInt($('#number').val());
+			    cart_num = parseInt($('#tp_cart_info').html())+parseInt(num);
+			    $('#tp_cart_info').html(cart_num);
+
+			    if($('#tp_cart_info').html()==0){  //小红点
+					$("#tp_cart_info").hide();
+				}else{
+					$("#tp_cart_info").show();
+				}
 			    mui.confirm('添加成功！','提示',['再逛逛', '去购物车'],function(e){
 			    	if (e.index == 0) {
-			    		location.href = window.location.href;
+			    		
 			    	}else{
 			    		location.href = "/index.php?m=Mobile&c=Cart&a=cart";
 			    	}

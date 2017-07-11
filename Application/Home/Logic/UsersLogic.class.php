@@ -218,6 +218,9 @@ class UsersLogic extends RelationModel
          $user_info['waitPay']     = M('order')->where("user_id = $user_id ".C('WAITPAY'))->count(); //待付款数量
          $user_info['waitSend']    = M('order')->where("user_id = $user_id ".C('WAITSEND'))->count(); //待发货数量         
          $user_info['waitReceive'] = M('order')->where("user_id = $user_id ".C('WAITRECEIVE'))->count(); //待收货数量                  
+         $user_info['FINISH'] = M('order')->where("user_id = $user_id ".C('FINISH'))->count(); //已完成数量                 
+         $user_info['WAITCCOMMENT'] = M('order')->where("user_id = $user_id ".C('WAITCCOMMENT'))->count(); //待评价数量
+
          $user_info['order_count'] = $user_info['waitPay'] + $user_info['waitSend'] + $user_info['waitReceive'];
          return array('status'=>1,'msg'=>'获取成功','result'=>$user_info);
      }

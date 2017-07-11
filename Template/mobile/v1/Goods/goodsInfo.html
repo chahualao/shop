@@ -21,7 +21,46 @@
 		.h-mid ul li a{
 			transition: color .4s;
 			height: auto !important;
+			position: relative;
+			overflow: hidden;
 		}
+		.shop-popover .thumb{
+			box-shadow: 2px 2px 10px;
+		}
+		.li_active{
+			position: absolute;
+			bottom: 0;
+			border-bottom: 2px solid #2a2a2a;
+			transition: all 0.4s cubic-bezier(0.6, -1, 0.5, 1.7);
+		}
+		.h-mid ul li a.on{
+			border: none;
+		}
+		.animate {
+		    -webkit-animation: ripple 0.25s linear;
+		    -moz-animation: ripple 0.25s linear;
+		    -ms-animation: ripple 0.25s linear;
+		    -o-animation: ripple 0.25s linear;
+		    animation: ripple 0.25s linear;
+		}
+		@keyframes ripple{
+			100% {
+			    opacity: 0;
+			    transform: scale(2.5);
+			}
+		}
+		
+		.ink {
+		    display: block;
+		    position: absolute;
+		    background: rgba(205, 218, 102, 0.3);
+		    border-radius: 100%;
+		    -webkit-transform: scale(0);
+		    -moz-transform: scale(0);
+		    -o-transform: scale(0);
+		    transform: scale(0);
+		}
+		
 	</style>
 	</head>
 
@@ -41,15 +80,16 @@
 					</li>
 					<li>
 						<a href="javascript:;" class="" id="goods_ka3">评价</a>
-					</li>
+					</li>					
 				</ul>
+				<div class="li_active"></div>
 			</div>
 			<div class="h-right">
 				<aside class="top_bar">
 					<div id="show_more">
 						<a href="javascript:;"></a>
 					</div>
-					<a href="/index.php/Mobile/Cart/cart.html" class="show_cart"><em class="global-nav__nav-shop-cart-num" id="tp_cart_info">0</em></a>
+					<a href="/index.php/Mobile/Cart/cart.html" class="show_cart"><em class="global-nav__nav-shop-cart-num" id="tp_cart_info"></em></a>
 				</aside>
 			</div>
 		</div>
@@ -257,6 +297,12 @@
 		mui('body').on('hidden', '.mui-popover', function(e) {
 			//console.log('hidden', e.detail.id);//detail为当前popover元素
 		});
+		
+		$(".li_active").width($(".h-mid>ul>li").width());
+		$(".h-mid ul li a").click(function(){
+			$(".li_active").stop().animate({"left":$(this).position().left+'px'},100)
+		})
+		
 		$("#shop-popover-1").click(function() {
 			$("#shop-popover").show();
 			$(".modal").show();
@@ -290,6 +336,8 @@
 		    //更新图片
 		    $("#spec_img_obj").attr('src',$(spec).attr('data-img'));
 		}
+		
+		
 
 		function get_goods_price()
 		{
@@ -388,9 +436,43 @@
 				}
 				$('#tp_cart_info').html(cart_cn);
 
+				if($('#tp_cart_info').html()==0){
+					$("#tp_cart_info").hide();
+				}else{
+					$("#tp_cart_info").show();
+				}
+
 				//加载评论
 				ajaxComment(1,1);
 		});
 
+	</script>
+	<script type="text/javascript">		
+		$(function(){
+			_wave(".h-mid ul li a");
+		});
+		//obj及需要添加效果的对象
+		function _wave(obj){
+			var ink, d, x, y;
+			$(obj).click(function(e){
+				$(this).css({position:'relative',overflow:'hidden'});
+			    if($(this).find(".ink").length === 0){
+			        $(this).prepend("<span class='ink'></span>");
+			    }
+			         
+			    ink = $(this).find(".ink");
+			    ink.removeClass("animate");
+			     
+			    if(!ink.height() && !ink.width()){
+			        d = Math.max($(this).outerWidth(), $(this).outerHeight());
+			        ink.css({height: d, width: d});
+			    }
+			     
+			    x = e.pageX - $(this).offset().left - ink.width()/2;
+			    y = e.pageY - $(this).offset().top - ink.height()/2;
+			     
+			    ink.css({top: y+'px', left: x+'px'}).addClass("animate");
+			});
+		}
 	</script>
 </html>

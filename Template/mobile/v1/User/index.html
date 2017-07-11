@@ -11,6 +11,28 @@
 <script src="__MOBILE_STATIC__/vendor/jquery/jquery.1.11.1.js"></script>
 <script src="__MOBILE_STATIC__/vendor/mui/mui.min.js"></script>
 </head>
+<style type="text/css">
+.global-nav__nav-shop-cart-num {
+    position: absolute;
+    top: -3px;
+    color: #fff;
+    text-align: center;
+    font-weight: normal;
+    font-size: 10px;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    background: #ff2233;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+.documentary li {
+    float: left;
+    text-align: center;
+    width: 25%;
+    position: relative;
+}
+</style>
 <body>
 	<div class="my-content">
 		<div class="my-content-title">
@@ -29,18 +51,22 @@
 			 <a  href="{:U('Mobile/User/order_list',array('type'=>'WAITPAY'))}" ><li>
 				<img src="__MOBILE_STATIC__/mobile/images/Pendingpayment.jpg" alt="" />
 				<p>待付款</p>
+				<em class="global-nav__nav-shop-cart-num" > {$extends['result']['waitPay']} </em>
 			</li></a>
 			 <a  href="{:U('Mobile/User/order_list',array('type'=>'WAITSEND'))}" ><li>
 				<img src="__MOBILE_STATIC__/mobile/images/Waitingdelivery.jpg" alt="" />
 				<p>待发货</p>
+				<em class="global-nav__nav-shop-cart-num" >{$extends['result']['waitSend']}</em>
 			</li></a>
 			 <a  href="{:U('Mobile/User/order_list',array('type'=>'WAITRECEIVE'))}" ><li>
 				<img src="__MOBILE_STATIC__/mobile/images/Accountreceivable.jpg" alt="" />
 				<p>待收货</p>
+				<em class="global-nav__nav-shop-cart-num" >{$extends['result']['waitReceive']}</em>
 			</li></a>
-			<a  href="{:U('Mobile/User/order_list',array('type'=>'WAITCCOMMENT'))}" ><li>
-				<img src="__MOBILE_STATIC__/mobile/images/completed.jpg" alt="" />
-				<p>已完成</p>
+			 <a  href="{:U('Mobile/User/order_list',array('type'=>'WAITCCOMMENT'))}" ><li>
+				<img src="__MOBILE_STATIC__/mobile/images/WAITCCOMMENT.jpg" alt="" />
+				<p>待评价</p>
+				<em class="global-nav__nav-shop-cart-num" >{$extends['result']['WAITCCOMMENT']}</em>
 			</li></a>
 		</ul>
 		<div class="line-1"></div>
@@ -72,5 +98,18 @@
 	<include file="Public/foot" />
 </body>
 <script>
+
+// 没有相关订单的订单模块上不需要出现小红点
+function  hide(obj,i) {
+	var obj=$(".global-nav__nav-shop-cart-num").eq(i).text();
+	if(obj==0){
+		$(".global-nav__nav-shop-cart-num").eq(i).hide();
+	}
+}
+hide('waitPay',0);
+hide('waitSend',1);
+hide('waitReceive',2);
+// hide('FINISH',4);
+hide('WAITCCOMMENT',3);
 </script>
 </html>

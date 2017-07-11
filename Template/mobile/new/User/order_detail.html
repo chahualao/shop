@@ -1,4 +1,6 @@
 <include file="Public/header"/>
+<script src="__MOBILE_STATIC__/vendor/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>  
+<link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/vendor/mui/mui.min.css"/>
 <body>
 <header>
 <div class="tab_nav">
@@ -114,12 +116,15 @@
 	</div>		
 </div>
 <script> 
-    //取消订单
+//取消订单
     function cancel_order(id){
-        if(!confirm("确定取消订单?"))
-            return false;
-        location.href = "/index.php?m=Mobile&c=User&a=cancel_order&id="+id;
+        mui.confirm("确定取消订单?","提示",function(e){
+        	if(e.index ==1){
+        		location.href = "/index.php?m=Mobile&c=User&a=cancel_order&id="+id;
+        	}
+        },"div");
     }
+
 </script>
 </body>
 </html>

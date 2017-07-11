@@ -53,6 +53,10 @@ class UserController extends MobileBaseController
      */
     public function index()
     {
+        $user = new UsersLogic;
+        
+        $extends = $user->get_info(session('user.user_id'));
+        $this->assign('extends',$extends);
 
         $order_count = M('order')->where("user_id = {$this->user_id}")->count(); // 我的订单数
         $goods_collect_count = M('goods_collect')->where("user_id = {$this->user_id}")->count(); // 我的商品收藏
