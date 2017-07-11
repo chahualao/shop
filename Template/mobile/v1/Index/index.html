@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>{$tpshop_config['shop_info_store_title']}</title>
+    <meta http-equiv="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+	<meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+    <link href="__MOBILE_STATIC__/vendor/mui/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/vendor/swiper/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/public.css"/>
+
+    <link href="__MOBILE_STATIC__/mobile/css/homePage.css" rel="stylesheet" />
+    <link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/iconfont.css" />
+    <link rel="stylesheet" href="__MOBILE_STATIC__/vendor/dropload/dropload.css">
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/search.css"/>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="__MOBILE_STATIC__/vendor/mui/mui.min.js"></script>
+<script src="__MOBILE_STATIC__/vendor/swiper/swiper.min.js"></script>
+<script src="__MOBILE_STATIC__/vendor/dropload/dropload.min.js"></script>
+<!-- <script src="__MOBILE_STATIC__/vendor/layer/layer-min.js"></script> -->
+<script src="__MOBILE_STATIC__/mobile/js/common.js"></script>
+<script src="__MOBILE_STATIC__/mobile/js/public.js"></script>
+</head>
+<body>
+<div id="wraper">
+	<!--搜索框-->
+	<div class="mui-input-row mui-search">
+		<img src="__MOBILE_STATIC__/mobile/images/search-logo.png" alt="" class="search-logo"/>
+		<img src="__MOBILE_STATIC__/mobile/images/searchicon.png" alt="" / class="search-icon">
+	</div>
+	<!--banner-->
+	<div id="slider" class="mui-slider" >
+	  <div class="mui-slider-group mui-slider-loop">
+	    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+	    <div class="mui-slider-item mui-slider-item-duplicate">
+	      <a href="{$adv[2]['ad_link']}" <if condition="$adv[2]['target'] eq 1">target="_blank"</if> >
+	        <img src="{$adv[2]['ad_code']}">
+	      </a>
+	    </div>
+	    <foreach name="adv" item="v" key="k" >
+	    <div class="mui-slider-item">
+	      <a href="{$v.ad_link}" <if condition="$v['target'] eq 1">target="_blank"</if> >
+	        <img src="{$v['ad_code']}">
+	      </a>
+	    </div>
+	    </foreach>
+	    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+	    <div class="mui-slider-item mui-slider-item-duplicate">
+	      <a href="{$adv[0]['ad_link']}" <if condition="$adv[0]['target'] eq 1">target="_blank"</if> >
+	        <img src="{$adv[0]['ad_code']}">
+	      </a>
+	    </div>
+	  </div>
+	  <div class="mui-slider-indicator">
+	    <div class="mui-indicator mui-active"></div>
+	    <div class="mui-indicator"></div>
+	    <div class="mui-indicator"></div>
+	  </div>
+	</div>
+	<notempty name="Groupon">
+	<!--左右滑动-->
+	<div id="new-arrival" class="mui-text-center">
+		<div class="new-arrival-inner">限时团购 <span class="new-arrival-span">|</span> <span class="new-arrival-span2">现代简约风</span></div>
+		<div class="swiper-container">
+	        <div class="swiper-wrapper">
+	        	
+	        	<foreach name="Groupon" item="v" key="k" >
+	            <div class="swiper-slide">
+	            	<div class="mui-text-center fl">
+						<a href="{:U('Activity/group',array('id'=>$v['goods_id']))}"><img src="{$v.goods_id|goods_thum_images=400,400}" alt="" /></a>
+						<p class="swiper-wrapper-p1"><if condition="$v['title'] neq ''">{$v.title}<else />{$v.goods_name}</if></p>
+						<p class="swiper-wrapper-p2">{$v.price} 元</p>
+					</div>
+	            </div>
+				</foreach>
+				
+	        </div>
+	   </div>
+		<a href="{:U('Activity/group_list')}" class="new-arrival-a">查看所有团购></a>
+	</div>
+	</notempty>
+
+	<!--促销模块-->	
+	<notempty name="promotion">
+		<!--春季专场轮播-->
+		<notempty name="promotion[0]">
+		<div class="mui-text-center" id="special-performance">
+			<div class="new-arrival-inner">{$promotion[0]['name']} <span class="new-arrival-span">|</span> <span class="new-arrival-span2">{$promotion[0]['sub_name']}</span></div>
+			<div id="slider2" class="mui-slider" >
+			  <div class="mui-slider-group mui-slider-loop">
+			    
+			    <if condition="$promotion['goods_lists'][$promotion[0]['id']] neq '' ">
+			    <foreach name="promotion['goods_lists'][$promotion[0]['id']]" item="v" key="k" >
+			    <div class="mui-slider-item">
+			      <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v['goods_id']))}">
+			        <img src="{$v.goods_id|goods_thum_images=800,800}">
+			      </a>
+			    </div>
+			    </foreach>
+			    </if>
+			    
+			  </div>
+			  <div class="mui-slider-indicator">
+			   <foreach name="promotion['goods_lists'][$promotion[0]['id']]" item="v" key="k" >
+				    <div class="mui-indicator" style="margin:1px;"></div>
+				</foreach>
+			  </div>
+			</div>
+		</div>
+		</notempty>
+		<notempty name="promotion[1]">
+		<!--新品上市-->
+		<div id="new-arrival2" class="mui-text-center">
+			<div class="new-arrival-inner">{$promotion[1]['name']} <span class="new-arrival-span">|</span> <span class="new-arrival-span2">{$promotion[1]['sub_name']}</span></div>
+			<div class="swiper-container">
+		        <div class="swiper-wrapper">
+		        	<if condition="$promotion['goods_lists'][$promotion[1]['id']] neq '' ">
+		        	<foreach name="promotion['goods_lists'][$promotion[1]['id']]" item="v" key="k" >
+		            <div class="swiper-slide">
+		            	<div class="mui-text-center fl">
+							<a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v['goods_id']))}">
+							<img src="{$v.goods_id|goods_thum_images=400,400}" alt="" /></a>
+							<p class="swiper-wrapper-p1">{$v.goods_name}</p>
+							<p class="swiper-wrapper-p2">￥{$v.shop_price}</p>
+						</div>
+		            </div>
+					</foreach>
+					</if>
+		        </div>
+		   </div>
+			<a href="{:U('Mobile/Goods/goodsList',array('is_new'=>1))}" class="new-arrival-a">查看所有新品> </a>
+		</div>
+		</notempty>
+		<notempty name="promotion[2]">
+		<!--达人推荐-->
+		<div class="recommend mui-text-center">
+			<div class="new-arrival-inner">{$promotion[2]['name']} <span class="new-arrival-span">|</span> <span class="new-arrival-span2">{$promotion[2]['sub_name']}</span></div>
+			<div class="recommend-content">
+				<div class="mui-slider" >
+				  <div class="mui-slider-group">
+				    <if condition="$promotion['goods_lists'][$promotion[2]['id']] neq '' ">
+				    <foreach name="promotion['goods_lists'][$promotion[2]['id']]" item="v" key="k" >
+				    <div class="mui-slider-item">
+				      <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v['goods_id']))}">
+			        	<img src="{$v.goods_id|goods_thum_images=400,400}">
+			      	  </a>
+				    </div>
+				    </foreach>
+				    </if>
+				    
+				  </div>
+				  <div class="mui-slider-indicator">
+				  	<foreach name="promotion['goods_lists'][$promotion[2]['id']]" item="v" key="k" >
+				    <div class="mui-indicator"></div>
+				    </foreach>
+				  </div>
+				</div>
+				<div class="describe">
+					<p class="describe-title">{$promotion['goods_lists'][$promotion[2]['id']][0]['goods_name']}</p>
+					<p class="describe-content">{$promotion[2]['description']|htmlspecialchars_decode}</p>
+					<div class="describe-price-out">
+						<p class="describe-price">￥{$promotion['goods_lists'][$promotion[2]['id']][0]['shop_price']}</p>
+						<a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$promotion['goods_lists'][$promotion[2]['id']][0]['goods_id']))}"><div class="shop-buy">购买</div></a>
+						<div class="shop-cart" onclick="AjaxAddCart({$promotion['goods_lists'][$promotion[2]['id']][0]['goods_id']},1,0);">加入购物车</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		</notempty>
+	</notempty>
+
+	<!--猜你喜欢-->	
+	<div class="mui-text-center" style="background: #fbfbfb;">
+		<div class="new-arrival-inner">猜你喜欢 <!-- <span class="new-arrival-span">|</span> <span class="new-arrival-span2">超高性价比</span> --></div>
+	</div>
+	<!--下拉刷新容器-->
+	<div id="pullrefresh" class="mui-content ">
+		<!--<div class="mui-scroll">-->
+			<!--数据列表-->
+			<div class="mui-table-view mui-table-view-chevron" style="margin-top: 0px;">
+				<div class="content">
+				    <div class="lists">
+				    	<if condition="$maybeyoulike neq '' ">
+						<foreach name="maybeyoulike" item="v" key="k" >
+						<div class="recommend-content">
+							<div class="swiper-container2">
+						       <div class="swiper-wrapper">
+						        <php>
+						            $v_g_id = $v['goods_id'];
+						        	$imglist = M('GoodsImages')->where("goods_id = '$v_g_id' ")->limit(3)->select();
+						        	
+						        </php>
+						        <foreach name="imglist" item="vo" key="key" >
+						           <div class="swiper-slide">
+						            	<a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v_g_id))}"><img src="{$vo.image_url}" ></a>
+						            </div>
+						        </foreach>    
+						        </div>
+						        <!-- Add Pagination -->
+						        <div class="swiper-pagination"></div>
+						    </div>
+						   	<div class="describe">
+								<p class="describe-title">{$v.goods_name}</p>
+								<p class="describe-content">
+								{$v['goods_remark']}
+								</p>
+								<div class="describe-price-out">
+									<p class="describe-price">￥{$v.shop_price}</p>
+									<a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v['goods_id']))}"><div class="shop-buy">购买</div></a>
+									<div class="shop-cart" onclick="AjaxAddCart({$v.goods_id},1,0);">加入购物车</div>
+								</div>
+							</div>
+						</div>
+						</foreach>
+						</if>
+				    </div>
+				    <div>
+						<!--<div > 加载更多 </div>-->  
+						<div class="load-more" id="more" data="2">加载更多</div>
+					</div>
+				</div>
+			</div>
+		<!--</div>-->
+	</div>
+	
+	<!--底部导航-->
+	<include file="Public/foot" />
+</div>
+<!-- 搜索 -->
+<div class="search-content">
+	<div class="search">
+		<span class="mui-icon mui-icon-search" style="position: absolute;top: 4px;left: 10px;"
+		onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();"></span>
+		<form id="sourch_form" name="sourch_form" method="post" action="{:U('Goods/search')}"><input type="search" name="q" id="q" value="<?php echo I('q'); ?>" style="padding-left: 40px;text-align: left;" placeholder="请输入关键词"/></form>
+			
+		<span class="cancel">取消</span>
+		<span style="display:none;" class="searchIn" onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();">搜索</span>
+	</div>
+	<div class="hot-search">
+		<span>热门搜索</span>
+		<ul>
+			<foreach name="tpshop_config.hot_keywords" item="wd" key="k">
+               <li><a href="{:U('Goods/search',array('q'=>$wd))}" <if condition="$k eq 0">class="ht"</if>>{$wd}</a></li>
+            </foreach> 
+		</ul>
+	</div>
+</div>
+</body>
+
+<script>
+//获得slider插件对象
+var gallery = mui('#slider');
+gallery.slider({
+  interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+});
+//	swiper左右滑动
+var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 'auto',
+    spaceBetween: 10,
+});
+var swiper2 = new Swiper('.swiper-container2', {
+    pagination: '.swiper-pagination',
+    paginationClickable: true
+});
+$(function(){
+	//猜你喜欢
+	$("#more").bind('click',function(){
+		$(this).html("加载中...");
+		var page = parseInt($(this).attr('data'));
+		$.ajax({  
+		   type: "post",  
+		   url: "{:U('Index/getyoulikemore')}",  
+		   data: {p:page},  
+		   dataType: "html",  
+		   success: function (data) {  
+		       if (data) {
+		       	   $(".lists").append(data);   
+		           $("#more").html("加载更多");
+		           $("#more").attr('data',page+1);
+		            //重新初始化slide
+					var swiper2 = new Swiper('.swiper-container2',{
+					        pagination: '.swiper-pagination',
+					        paginationClickable: true
+					    });
+		       } else {  
+		          $("#more").html("没有更多");   
+		       }    
+		   }  
+		});
+	})
+	//搜索
+
+})
+</script>
+</html>

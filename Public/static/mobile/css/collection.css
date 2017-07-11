@@ -1,0 +1,20 @@
+.collection-ul-img{width: 25%;float: left;padding: 0 3%;}
+.collection-ul li{position: relative;padding-top: 12px;overflow: hidden;padding-bottom: 8px;border-bottom: 1px solid #eeeeee;}
+.collection-ul-div{float: left;width: 69%;}
+.collection-ul-div-p1{color: #333333;display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;}
+.collection-ul-div-p2{color: #e41735;}
+.collection-ul-div-p3{border: 1px solid #232220;padding: 4px 2px;text-align: center;width: 86px;background: #fff;float: right;font-size: 14px;color: #232220;}
+.collection-ul-div-p4{background: #a08255;text-align: center;color: #fff;padding: 5px 2px;width: 84px;float: right;margin-left: 8px;font-size: 14px;}
+.collection-ul-innerdiv{margin-top: 8px;}
+
+.load-more {
+    background: #4a4a4a;
+    padding: 8px 10px;
+    margin: 0px 15px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;margin-top: 8px;margin-bottom: 55px;color: #fff;
+}

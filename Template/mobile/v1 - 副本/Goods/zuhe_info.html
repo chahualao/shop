@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="__MOBILE_STATIC__/vendor/mui/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/public.css" />
+	<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/package.css" />
+	<script type="text/javascript" src="__MOBILE_STATIC__/vendor/jquery/jquery-3.1.1.min.js"></script>
+	<script src="__MOBILE_STATIC__/vendor/mui/mui.min.js"></script>
+	<script type="text/javascript" src="__MOBILE_STATIC__/mobile/js/public.js"></script>
+	<script src="__MOBILE_STATIC__/mobile/js/common.js"></script>
+</head>
+<body>
+	<!--头部导航-->
+	<div class="tab_nav">
+		<div class="header">
+			<div class="h-left">
+				<a class="sb-back" href="javascript:history.back(-1)" title="返回"></a>
+			</div>
+			<div class="h-mid">组合套餐</div>
+			<div class="h-right">
+				<aside class="top_bar">
+					<div id="show_more">
+						<a href="javascript:;"></a>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</div>
+	<!--组合套餐内容-->
+	<div class="package-content">
+		<div class="package-content-line"></div>
+		<ul class="package-content-ul">
+			<foreach name="zuhe_lists" item="vo" key="k_index">
+			<li>
+				<label id="checkbox_id_{$k_index}" class="checkbox_id">
+					<input type="checkbox"  value="{$vo.goods_id}" /><i >√</i>
+				</label>
+				<div class="package-content-ul-div">
+					
+					<div class="mui-row">
+						<a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$vo['goods_id']))}"><img src="{$vo.goods_id|goods_thum_images=400,400}" alt="" class="mui-col-xs-3"/></a>
+						<div class="package-content-ul-div-inner mui-col-xs-6" >
+							<div class="package-content-ul-div-inner-div"><a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$vo['goods_id']))}">{$vo.goods_name}</a></div>
+							<div class="package-content-ul-div-inner-div-alert" onclick="openPopover({$k_index})">
+								选择商品属性
+								<span class="mui-push-right"></span>
+							</div>
+						</div>
+						<div class="mui-col-xs-3 package-price">
+							<p>￥{$vo.shop_price}元</p>
+							<del>￥{$vo.market_price}元</del>
+						</div>
+					</div>
+				</div>	
+			</li>
+			</foreach>
+			
+		</ul>
+	</div>	
+	
+	<!--底部购买-->
+	<div class="bottom-buy">
+		<div class="mui-row">
+			<label class="mui-col-xs-3 mui-row-label">
+				<input id="checkAll" type="checkbox" name="address" value="" /><i>√</i>全选
+			</label>
+			<div class="bottom-buy-price mui-col-xs-5">
+				<p class="bottom-buy-price-p1" id="totalPrice">总计：￥0元</p>
+				<p class="bottom-buy-price-p2">不含运费</p>
+			</div>
+			<div class="mui-col-xs-4 buy-now" style="float: right;" onclick="addCart();">
+				立刻购买
+			</div>
+		</div>
+	</div>
+	<!--底部弹出-->
+	<div id="shop-popover" class="shop-popover">
+
+		<foreach name="filter_spec" item="specLists" key="key" >
+		<form>
+		<div class="shop-popover" id="spec_{$key}" style="display: none">
+			
+			<div class="shop-popover-close" onclick="closePopover({$key})">
+				<img src="__MOBILE_STATIC__/mobile/images/shop-popover-close.png">
+			</div>
+			<img src="{$zuhe_lists[$key]['goods_id']|goods_thum_images=100,100}" alt="" class="thumb">
+			<div class="shop-popover-div">
+				<span id="s_goods_price_{$key}" data-price="{$zuhe_lists[$key]['shop_price']}">￥{$zuhe_lists[$key]['shop_price']}</span>
+				<del>￥{$zuhe_lists[$key]['market_price']}</del>
+			</div>
+			<div class="shop-select-title">选择 <span>型号</span> <span>颜色分类</span></div>
+			<div class="">
+				<div class="shop-popover-content spec_search_li_tag">
+					<foreach name="specLists" item="spec" key="k" >
+					<div class="tag-alert">
+						{$k}
+						<div class="tag tag-click">
+							<div class="mui-row">
+								<foreach name="spec" item="v2" key="k2">
+									<li class="mui-table-view-cell <if condition="$k2 eq 0">active</if>" data="{$key}" onclick="switch_spec(this);" style="display:block;float:left;margin:4px;">
+											{$v2[item]}
+												<input type="radio" style="display:none;" name="goods_spec[{$k}]" value="{$v2[item_id]}" <if condition="$k2 eq 0 ">checked="checked"</if>/>
+											</li>
+								</foreach>
+							</div>
+						</div>
+					</div>
+					</foreach>
+					
+					<div class="tag-alert ">
+						<span style="height: 40px;line-height: 40px;">选择数量</span>
+						<div class="mui-numbox" data-numbox-min='0' data-numbox-max='100'>
+							<!-- "-"按钮，点击可减小当前数值 -->
+							<button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+							<input name="goods_num" class="mui-numbox-input" type="number" value="1" id="goods_num_{$key}" onchange='$("#totalPrice").html("总计：￥"+getTotalPrice()+"元");' />
+							<input type="hidden" name="goods_id" value="{$zuhe_lists[$key]['goods_id']}"/>
+							<!-- "+"按钮，点击可增大当前数值 -->
+							<button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+						</div>
+					</div>
+					<p class="confirm" onclick="closePopover({$key});">确定</p>
+					
+				</div>
+			</div>
+		</div>
+		</form>
+		</foreach>
+	</div>
+	<div class="modal"></div>
+	<!--顶部菜单-->
+	<div class="goods_nav show" id="menu">
+		<div class="Triangle">
+			<h2></h2>
+		</div>
+		<ul>
+			<li>
+				<a href="http://m.shop.rehoming.cn/index.php/Mobile/Index/index.html"><span class="menu1"></span><i>首页</i></a>
+			</li>
+			<li>
+				<a href="http://m.shop.rehoming.cn/index.php/Mobile/Goods/categoryList.html"><span class="menu2"></span><i>分类</i></a>
+			</li>
+			<li>
+				<a href="http://m.shop.rehoming.cn/index.php/Mobile/Cart/cart.html"><span class="menu3"></span><i>购物车</i></a>
+			</li>
+			<li style=" border:0;">
+				<a href="http://m.shop.rehoming.cn/index.php/Mobile/User/index.html"><span class="menu4"></span><i>我的</i></a>
+			</li>
+		</ul>
+	</div>
+</body>
+
+<php>
+	//处理一些变量
+	foreach($zuhe_lists as $val){
+		$price_str .=$val['shop_price'].',';
+		$store_count_str.=$val['store_count'].',';
+	}
+
+	$price_str=trim($price_str,',');
+
+	$store_count_str=trim($store_count_str,',');
+	$price_str ='['.$price_str.']';
+	$store_count_str ='['.$store_count_str.']';
+
+	$spec_goods_price_str = json_encode($spec_goods_price);
+</php>
+<script>
+	$(function(){
+		//选择
+		/*$(".checkbox_id").bind('click',function(){
+			if ($(this).children('input').is(':checked')) {
+				$(this).children('input').attr("checked","false");
+			}else{
+				$(this).children('input').attr("checked","true");
+			}
+			console.log($(this).children('input').prop("checked"));
+		})*/
+
+		$(".modal").click(function() {
+			$(".shop-popover").hide();
+			$(".modal").hide();
+			$("body").removeClass("modal-open");
+		})
+
+		$('.package-content-ul li label').click(function(){
+			$("#totalPrice").html("总计：￥"+getTotalPrice()+"元");
+		})
+		$("#checkAll").click(function() {
+			$('.package-content-ul .checkbox_id input').prop("checked",this.checked);
+			$("#totalPrice").html("总计：￥"+getTotalPrice()+"元");
+	        
+	   });
+	})
+
+	//获得总价
+	function getTotalPrice(){
+		var totalPrice=0;
+		$('.package-content-ul .checkbox_id input').each(function(index){
+			if ($(this).prop('checked')) {
+				var Price = parseInt($("#s_goods_price_"+index).attr('data-price'));
+	        	var num = parseInt($("#goods_num_"+index).val());
+	        	totalPrice = totalPrice+(Price*num);
+			}
+		})
+		return totalPrice;
+	}
+
+	function openPopover(id){
+		$("#shop-popover").show();
+		$("#spec_"+id).show();
+		$(".modal").show();
+		$("body").addClass("modal-open");
+	}
+
+	
+
+	function closePopover(id){
+		$(".shop-popover").hide();
+		$("#spec_"+id).hide();
+		$(".modal").hide();
+		$("body").removeClass("modal-open");
+	}
+
+	
+
+	function switch_spec(spec)
+		{
+		    $(spec).siblings().removeClass('active');
+		    $(spec).addClass('active');
+			$(spec).siblings().children('input').prop('checked',false);
+			$(spec).children('input').prop('checked',true);	
+		    //更新商品价格
+		    //产品索引
+		    var g_index_data = $(spec).attr('data');
+		    //规格索引
+		    $(".spec_search_li_tag li").each(function(index,event){
+		    	
+		    	if($(this).is($(spec))){
+		    		alert(index);
+		    		get_goods_price(g_index_data,index);
+		    	}
+		    })
+		    
+		}
+	function get_goods_price(id,spec_id)
+	{	
+		var price_arr ={$price_str};
+		var store_count_arr={$store_count_str};
+		var spec_goods_price_arr = {$spec_goods_price_str};
+		var goods_price = price_arr[id]; // 商品起始价
+		var store_count = store_count_arr[id]; // 商品起始库存	
+		var spec_goods_price = spec_goods_price_arr[id][spec_id];  // 规格 对应 价格    
+		//alert(spec_goods_price['28_100']['price']);
+		//console.log(spec_goods_price);	
+		// 如果有属性选择项
+		if(spec_goods_price != null)
+		{
+			goods_spec_arr = new Array();
+			$("#spec_"+id+" input[name^='goods_spec']:checked").each(function(){
+				 goods_spec_arr.push($(this).val());
+			});    
+			//var spec_key = goods_spec_arr.sort(sortNumber).join('_');  //排序后组合成 key	
+			goods_price = spec_goods_price.price; // 找到对应规格的价格		
+			store_count = spec_goods_price.store_count; // 找到对应规格的库存
+		}
+		var goods_num = parseInt($("#goods_num_"+id).val()); 
+		// 库存不足的情况
+		if(goods_num > store_count)
+		{
+		   goods_num = store_count;
+		   mui.confirm('库存仅剩 '+store_count+' 件','提示',['确定'],function(e){
+		    	if (e.index == 0) {
+		    		$("#goods_num_"+id).val(goods_num);
+		    	}
+		    },'div');
+		}
+		//商品促销
+	    /*var flash_sale_price = parseFloat("{$zuhe_lists['flash_sale']['price']}");
+	    (flash_sale_price > 0) && (goods_price = flash_sale_price);*/
+		$("#s_goods_price_"+id).html('￥'+goods_price+'元'); // 变动价格显示
+		$("#s_goods_price_"+id).attr('data-price',goods_price);
+
+	}
+
+	function sortNumber(a,b) 
+	{ 
+		return a - b; 
+	}
+	//批量加入购物车
+	function addCart(){
+		$("#shop-popover form").each(function(index){
+			if($('#checkbox_id_'+index).children('input').is(':checked')) {
+				$.ajax({
+		            type : "POST",
+		            url:"/index.php?m=Home&c=Cart&a=ajaxAddCart",
+		            data : $(this).serialize(),// 你的formid 搜索表单 序列化提交                        
+					dataType:'json',
+		            success: function(data){	
+						// 加入购物车后再跳转到 购物车页面
+					    if(data.status < 0)
+						{
+							mui.confirm(data.msg,'提示',['再给一次机会', '尝试重新加载'],function(e){
+						    	if (e.index == 0) {
+						    		addCart();
+						    	}else{
+						    		location.href = window.location.href;
+						    	}
+						    },'div');
+
+							return false;
+						}else{
+							//console.log(data);
+							location.href = "/index.php?m=Mobile&c=Cart&a=cart";
+						}
+					   
+		            }
+		        });
+			}else{
+				//不选择组合商品的话直接跳转购物车
+				location.href = "/index.php?m=Mobile&c=Cart&a=cart";
+			}
+			
+		})
+		
+	} 
+</script>
+</html>

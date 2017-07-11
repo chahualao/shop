@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>瑞和家商城</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/vendor/mui/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/rehoming.css"/>
+    <link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/coupon.css" />
+</head>
+<body style="background-color: #FBFBFB;">
+	<header class="mui-bar mui-bar-nav pub-head">	<!--头部导航-->
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left pub-head-back"></a>
+        <h1 class="mui-title">我的优惠券</h1>
+        <a class="mui-pull-right pub-head-more" id="show_more"></a>        	
+    <!--顶部右边more下拉菜单-->
+	   <include file="Public/right_top_menu" />
+   	</header>   <!--头部导航结束--> 
+   	
+   	<div class="my_coupon">
+   	    <div class="my_couponHead" style="right: 0;">
+   	        <a class="<if condition='$_GET[type] eq 0'>action</if>" href="{:U('User/coupon',array('type'=>0))}">未使用</a>
+   	        <a class="<if condition='$_GET[type] eq 1'>action</if>" href="{:U('User/coupon',array('type'=>1))}">已使用</a>
+   	        <a class="<if condition='$_GET[type] eq 2'>action</if>" href="{:U('User/coupon',array('type'=>2))}">已过期</a>
+   	    </div>
+   	    <div class="coupon-content">
+   	        <div id="item1" >
+   	            <ul class="mui-table-view">
+                  <volist name="coupon_list" id="coupon">
+   	                <li>
+   	                	<img src="__MOBILE_STATIC__/mobile/images/coupon.png" alt="" />
+   	                	<p class="coupon-money">{$coupon.money}</p>
+   	                	<p class="coupon-money4">VIP&nbsp;优惠劵</p>
+   	                	<p class="coupon-money2">满{$coupon.condition}可以使用</p>
+   	                	<p class="coupon-money3">有效期:<span>{$coupon.use_end_time|date='Y-m-d H:i:s',###}</span></p>
+   	                </li>
+                  </volist>
+   	            </ul>
+   	        </div>
+   	    </div>
+   	</div>
+
+
+	<script src="__MOBILE_STATIC__/vendor/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>    
+    <script src="__MOBILE_STATIC__/vendor/jquery/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__MOBILE_STATIC__/mobile/js/public.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    mui.init();/*mui框架初始化*/
+
+	</script>
+	</body>
+</html>

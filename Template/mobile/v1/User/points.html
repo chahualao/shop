@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>瑞和家商城</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/vendor/mui/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/rehoming.css"/>
+</head>
+<body style="background-color: #FBFBFB;">
+	<header class="mui-bar mui-bar-nav pub-head">	<!--头部导航-->
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left pub-head-back"></a>
+        <h1 class="mui-title">我的积分</h1>
+        <a class="mui-pull-right pub-head-more" id="show_more"></a>        	
+    <!--顶部右边more下拉菜单-->
+	<include file="Public/right_top_menu" />
+   </header>   <!--头部导航结束--> 
+   
+  	<div class="my_pub-white-box1">		
+		<div class="money-info">
+	   		<div class="money-info-loan" style="display: block">
+	   			积分余额<span id="account-balance" class="balance">{$user.pay_points}</span>
+	   		</div>	   		
+   		</div>
+   </div>
+	<ul class="consumerinfobox" style="top:139px">
+		<foreach name="account_log" item="vo">
+		<a class="a-purseone">
+			<li class="consumerone account-list" style="display: block;">
+				<div class="litop">
+					<span>积分:</span><span id="consumer-integral" style="color: #e41735;">{$vo.pay_points}</span>
+					<img src="__MOBILE_STATIC__/mobile/images/icoright.png" style="width: 20px; float: right;"/>
+				</div>
+				<p id="consumer-datatime">{$vo.change_time|date='Y-m-d',###}</p>
+				<p class="consumer-info">				
+					{$vo.desc}			
+				</p>
+			</li>			
+		</a>
+		</foreach>
+			
+	</ul>
+	
+   	
+   	 <div class="gotop">
+   		<img src="__MOBILE_STATIC__/mobile/images/gotop.png"/>
+   	</div>
+   	
+   	<script src="__MOBILE_STATIC__/vendor/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>    
+    <script src="__MOBILE_STATIC__/vendor/jquery/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__MOBILE_STATIC__/mobile/js/public.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    mui.init();/*mui框架初始化*/
+   
+	$(function(){
+	   
+	   $(window).scroll(function (){			
+			var b = $(window).scrollTop();			
+			if(b>0){
+				$(".gotop").stop().fadeIn('fast');
+			}
+			else{
+				$(".gotop").stop().fadeOut('fast');
+			}   	
+	   })
+	   
+	   $(".gotop").click(function(){
+	   		$('html,body').animate({scrollTop: '0px'},400); 
+	   })
+	   
+	   
+	   
+	})
+   
+   </script>
+	</body>
+</html>

@@ -1,0 +1,364 @@
+[ 2017-06-19T22:09:50+08:00 ] 101.226.102.78 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000087s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000077s ]
+NOTIC: [8] Undefined index: openid /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 39 行.
+NOTIC: [8] Undefined index: openid /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 109 行.
+
+[ 2017-06-19T22:09:54+08:00 ] 101.226.102.78 /?code=031d1ymw0u2Ydh1Rh3pw00FLmw0d1ymH&state=STATE
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000079s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000068s ]
+NOTIC: [8] Undefined index: openid /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 39 行.
+NOTIC: [8] Undefined index: openid /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 109 行.
+NOTIC: [8] Undefined index: subscribe /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 199 行.
+
+[ 2017-06-19T22:09:55+08:00 ] 101.226.102.78 /index.php/Mobile/User/mobileinfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000072s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000072s ]
+INFO: [ view_begin ] --START--
+INFO: Run Home\Behaviors\testBehavior [ RunTime:0.000081s ]
+INFO: [ view_begin ] --END-- [ RunTime:0.000125s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000045s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000083s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001873s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.001921s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000071s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000154s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000046s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000073s ]
+
+[ 2017-06-19T22:10:00+08:00 ] 117.185.24.243 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000096s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000070s ]
+INFO: [ view_begin ] --START--
+INFO: Run Home\Behaviors\testBehavior [ RunTime:0.000067s ]
+INFO: [ view_begin ] --END-- [ RunTime:0.000111s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000075s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000114s ]
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 134 行.
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 137 行.
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 138 行.
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 139 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016822s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016862s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000042s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000213s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000304s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000039s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000068s ]
+
+[ 2017-06-19T22:10:06+08:00 ] 101.226.102.78 /?code=041FqAhI10Mcw50lKtgI1spjhI1FqAhv&state=STATE
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000078s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000072s ]
+
+[ 2017-06-19T22:10:06+08:00 ] 101.226.102.78 /index.php/Mobile/User/mobileinfo.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000079s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000073s ]
+INFO: [ view_begin ] --START--
+INFO: Run Home\Behaviors\testBehavior [ RunTime:0.000068s ]
+INFO: [ view_begin ] --END-- [ RunTime:0.000116s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000057s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000101s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001954s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002011s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000062s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000142s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000034s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000063s ]
+
+[ 2017-06-19T22:14:00+08:00 ] 106.11.158.233 /index.php/Mobile/Activity/group/id/423.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000096s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000066s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000117s ]
+NOTIC: [2] Division by zero /data/wwwroot/shop.rehoming.cn/Application/Home/Logic/GoodsLogic.class.php 第 227 行.
+NOTIC: [2] Division by zero /data/wwwroot/shop.rehoming.cn/Application/Home/Logic/GoodsLogic.class.php 第 228 行.
+NOTIC: [2] Division by zero /data/wwwroot/shop.rehoming.cn/Application/Home/Logic/GoodsLogic.class.php 第 230 行.
+NOTIC: [8] Undefined variable: filter_spec /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/ActivityController.class.php 第 64 行.
+INFO: [ view_begin ] --START--
+INFO: Run Home\Behaviors\testBehavior [ RunTime:0.000077s ]
+INFO: [ view_begin ] --END-- [ RunTime:0.000111s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: level /data/wwwroot/shop.rehoming.cn/ThinkPHP/Library/Think/Template/TagLib/Tpshop.class.php 第 155 行.
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000156s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000196s ]
+NOTIC: [8] Use of undefined constant HTTP_HOST - assumed 'HTTP_HOST' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/9217b7a1d33d39fc850a9fdbbc0c1533.php 第 115 行.
+NOTIC: [8] Use of undefined constant id - assumed 'id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/9217b7a1d33d39fc850a9fdbbc0c1533.php 第 115 行.
+NOTIC: [8] Use of undefined constant HTTP_HOST - assumed 'HTTP_HOST' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/9217b7a1d33d39fc850a9fdbbc0c1533.php 第 116 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/9217b7a1d33d39fc850a9fdbbc0c1533.php 第 116 行.
+NOTIC: [8] Use of undefined constant virtual_num - assumed 'virtual_num' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/9217b7a1d33d39fc850a9fdbbc0c1533.php 第 146 行.
+NOTIC: [8] Use of undefined constant buy_num - assumed 'buy_num' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/9217b7a1d33d39fc850a9fdbbc0c1533.php 第 146 行.
+NOTIC: [8] Undefined variable: prom_goods /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/9217b7a1d33d39fc850a9fdbbc0c1533.php 第 156 行.
+NOTIC: [8] Undefined variable: signPackage /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/9217b7a1d33d39fc850a9fdbbc0c1533.php 第 419 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013809s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013844s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000044s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000144s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000232s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000049s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000081s ]
+
+[ 2017-06-19T22:52:46+08:00 ] 111.206.36.18 /index.php/Mobile/User/coupon.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000086s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000041s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000078s ]
+
+[ 2017-06-19T22:52:46+08:00 ] 111.206.36.18 /index.php/Mobile/User/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000062s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000069s ]
+INFO: [ view_begin ] --START--
+INFO: Run Home\Behaviors\testBehavior [ RunTime:0.000075s ]
+INFO: [ view_begin ] --END-- [ RunTime:0.000125s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000043s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000081s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002311s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002345s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000082s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000165s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000036s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000063s ]
+
+[ 2017-06-19T22:52:52+08:00 ] 111.206.36.12 /index.php/Mobile/User/coupon.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000080s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000070s ]
+
+[ 2017-06-19T22:52:52+08:00 ] 111.206.36.12 /index.php/Mobile/User/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000066s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000030s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000065s ]
+INFO: [ view_begin ] --START--
+INFO: Run Home\Behaviors\testBehavior [ RunTime:0.000064s ]
+INFO: [ view_begin ] --END-- [ RunTime:0.000102s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000042s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000081s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002376s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002412s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000080s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000161s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000031s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000059s ]
+
+[ 2017-06-19T23:14:40+08:00 ] 116.235.155.142 /index.php/Mobile/Index/index.html?from=timeline&isappinstalled=0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000088s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000088s ]
+NOTIC: [8] Undefined index: openid /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 39 行.
+NOTIC: [8] Undefined index: openid /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 109 行.
+
+[ 2017-06-19T23:14:44+08:00 ] 116.235.155.142 /index.php/Mobile/Index/index.html?from=timeline&isappinstalled=0&code=031Chesg0bUh2B1GQdrg0vJmsg0ChesR&state=STATE
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000011s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000072s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000051s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000088s ]
+NOTIC: [8] Undefined index: openid /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 39 行.
+NOTIC: [8] Undefined index: openid /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 109 行.
+NOTIC: [8] Use of undefined constant appid - assumed 'appid' /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 212 行.
+NOTIC: [8] Use of undefined constant appsecret - assumed 'appsecret' /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 212 行.
+INFO: [ view_begin ] --START--
+INFO: Run Home\Behaviors\testBehavior [ RunTime:0.000095s ]
+INFO: [ view_begin ] --END-- [ RunTime:0.000152s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000079s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000120s ]
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 134 行.
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 137 行.
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 138 行.
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 139 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016763s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016815s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000044s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000210s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000302s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000040s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000069s ]
+
+[ 2017-06-19T23:14:50+08:00 ] 101.226.89.115 /index.php/Mobile/Index/index.html?from=timeline&isappinstalled=0
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000086s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000072s ]
+NOTIC: [8] Undefined index: openid /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 39 行.
+NOTIC: [8] Undefined index: openid /data/wwwroot/shop.rehoming.cn/Application/Mobile/Controller/MobileBaseController.class.php 第 109 行.
+
+[ 2017-06-19T23:33:14+08:00 ] 183.198.250.211 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000104s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000045s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000081s ]
+INFO: [ view_begin ] --START--
+INFO: Run Home\Behaviors\testBehavior [ RunTime:0.000106s ]
+INFO: [ view_begin ] --END-- [ RunTime:0.000148s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000072s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000113s ]
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 134 行.
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 137 行.
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 138 行.
+NOTIC: [8] Undefined offset: 0 /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/69dfae6d3f0859ff5894cbfe82e23022.php 第 139 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017082s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017117s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000043s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000195s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000284s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000041s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000071s ]
+
+[ 2017-06-19T23:51:05+08:00 ] 106.11.158.233 /index.php/Mobile/Goods/goodsInfo/id/464.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000119s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000090s ]
+NOTIC: [2] Division by zero /data/wwwroot/shop.rehoming.cn/Application/Home/Logic/GoodsLogic.class.php 第 227 行.
+NOTIC: [2] Division by zero /data/wwwroot/shop.rehoming.cn/Application/Home/Logic/GoodsLogic.class.php 第 228 行.
+NOTIC: [2] Division by zero /data/wwwroot/shop.rehoming.cn/Application/Home/Logic/GoodsLogic.class.php 第 230 行.
+INFO: [ view_begin ] --START--
+INFO: Run Home\Behaviors\testBehavior [ RunTime:0.000079s ]
+INFO: [ view_begin ] --END-- [ RunTime:0.000129s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: level /data/wwwroot/shop.rehoming.cn/ThinkPHP/Library/Think/Template/TagLib/Tpshop.class.php 第 155 行.
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000120s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000158s ]
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Undefined variable: signPackage /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 279 行.
+NOTIC: [8] Undefined index: flash_sale /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 448 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013323s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013356s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000041s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000166s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000265s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000042s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000071s ]
+
+[ 2017-06-19T23:51:09+08:00 ] 140.205.30.114 /index.php/Mobile/Goods/goodsInfo/id/464.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000077s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000035s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000070s ]
+NOTIC: [2] Division by zero /data/wwwroot/shop.rehoming.cn/Application/Home/Logic/GoodsLogic.class.php 第 227 行.
+NOTIC: [2] Division by zero /data/wwwroot/shop.rehoming.cn/Application/Home/Logic/GoodsLogic.class.php 第 228 行.
+NOTIC: [2] Division by zero /data/wwwroot/shop.rehoming.cn/Application/Home/Logic/GoodsLogic.class.php 第 230 行.
+INFO: [ view_begin ] --START--
+INFO: Run Home\Behaviors\testBehavior [ RunTime:0.000073s ]
+INFO: [ view_begin ] --END-- [ RunTime:0.000115s ]
+INFO: [ view_parse ] --START--
+NOTIC: [8] Undefined index: level /data/wwwroot/shop.rehoming.cn/ThinkPHP/Library/Think/Template/TagLib/Tpshop.class.php 第 155 行.
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000152s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000196s ]
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Use of undefined constant goods_id - assumed 'goods_id' /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 169 行.
+NOTIC: [8] Undefined variable: signPackage /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 279 行.
+NOTIC: [8] Undefined index: flash_sale /data/wwwroot/shop.rehoming.cn/Application/Runtime/Cache/Mobile/94cb4d638a2a5aa28921c8ab467f9022.php 第 448 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013836s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013870s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000037s ]
+INFO: Run Behavior\TokenBuildBehavior [ RunTime:0.000145s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000230s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000037s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000068s ]
+

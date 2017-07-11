@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>{$tpshop_config['shop_info_store_title']}</title>
+    <meta http-equiv="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+	<meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+    <link href="__MOBILE_STATIC__/vendor/mui/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/vendor/swiper/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/public.css"/>
+    <link href="__MOBILE_STATIC__/mobile/css/homePage.css" rel="stylesheet" />
+    <link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/iconfont.css" />
+    <link rel="stylesheet" href="__MOBILE_STATIC__/vendor/dropload/dropload.css">
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="__MOBILE_STATIC__/vendor/mui/mui.min.js"></script>
+<script src="__MOBILE_STATIC__/vendor/swiper/swiper.min.js"></script>
+<script src="__MOBILE_STATIC__/vendor/dropload/dropload.min.js"></script>
+<!-- <script src="__MOBILE_STATIC__/vendor/layer/layer-min.js"></script> -->
+<script src="__MOBILE_STATIC__/mobile/js/common.js"></script>
+</head>
+<body id="wraper">
+	<!--搜索框-->
+	<div class="mui-input-row mui-search">
+		<img src="__MOBILE_STATIC__/mobile/images/search-logo.png" alt="" class="search-logo"/>
+		<span class="mui-placeholder"><span class="mui-icon mui-icon-search"></span></span>
+	</div>
+	<!--banner-->
+	<div id="slider" class="mui-slider" >
+	  <div class="mui-slider-group mui-slider-loop">
+	    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+	    <div class="mui-slider-item mui-slider-item-duplicate">
+	      <a href="{$adv[0]['ad_link']}" <if condition="$adv[0]['target'] eq 1">target="_blank"</if> >
+	        <img src="{$adv[0]['ad_code']}">
+	      </a>
+	    </div>
+	    <foreach name="adv" item="v" key="k" >
+	    <!-- 第一张 -->
+	    <div class="mui-slider-item">
+	      <a href="{$v.ad_link}" <if condition="$v['target'] eq 1">target="_blank"</if> >
+	        <img src="{$v['ad_code']}">
+	      </a>
+	    </div>
+	    </foreach>
+	    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+	    <div class="mui-slider-item mui-slider-item-duplicate">
+	      <a href="{$adv[2]['ad_link']}" <if condition="$adv[2]['target'] eq 1">target="_blank"</if> >
+	        <img src="{$adv[2]['ad_code']}">
+	      </a>
+	    </div>
+	  </div>
+	  <div class="mui-slider-indicator">
+	    <div class="mui-indicator mui-active"></div>
+	    <div class="mui-indicator"></div>
+	    <div class="mui-indicator"></div>
+	  </div>
+	</div>
+	
+	<!--左右滑动-->
+	<div id="new-arrival" class="mui-text-center">
+		<div class="new-arrival-inner">限时团购 <span class="new-arrival-span">|</span> <span class="new-arrival-span2">现代简约风</span></div>
+		<div class="swiper-container">
+	        <div class="swiper-wrapper">
+	            <if condition="$Groupon neq '' ">
+	        	<foreach name="Groupon" item="v" key="k" >
+	            <div class="swiper-slide">
+	            	<div class="mui-text-center fl">
+						<a href="{:U('Activity/group',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=150,150}" alt="" /></a>
+						<p class="swiper-wrapper-p1">{$v.goods_name}</p>
+						<p class="swiper-wrapper-p2">{$v.price} 元</p>
+					</div>
+	            </div>
+				</foreach>
+				</if>
+	        </div>
+	   </div>
+		<a href="{:U('Activity/group_list')}" class="new-arrival-a">查看所有团购></a>
+	</div>	
+	<!--春节专场轮播-->
+	<div class="mui-text-center" id="special-performance">
+		<div class="new-arrival-inner">春节专场 <span class="new-arrival-span">|</span> <span class="new-arrival-span2">专属你的出口好货</span></div>
+		<div id="slider2" class="mui-slider" >
+		  <div class="mui-slider-group mui-slider-loop">
+		    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+		    <div class="mui-slider-item mui-slider-item-duplicate">
+		      <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$special[0]['goods_id']))}">
+		        <img src="{$special[0].['goods_id']|goods_thum_images=400,300}">
+		      </a>
+		    </div>
+		    <if condition="$special neq '' ">
+		    <foreach name="special" item="v" key="k" >
+		    <div class="mui-slider-item">
+		      <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v[goods_id]))}">
+		        <img src="{$v.goods_id|goods_thum_images=400,300}">
+		      </a>
+		    </div>
+		    </foreach>
+		    </if>
+		    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+		    <div class="mui-slider-item mui-slider-item-duplicate">
+		      <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$special[2]['goods_id']))}">
+		        <img src="{$special[2].['goods_id']|goods_thum_images=400,300}">
+		      </a>
+		    </div>
+		  </div>
+		  <div class="mui-slider-indicator">
+		    <div class="mui-indicator mui-active"></div>
+		    <div class="mui-indicator"></div>
+		    <div class="mui-indicator"></div>
+		  </div>
+		</div>
+	</div>
+	
+	<!--新品上市-->
+	<div id="new-arrival2" class="mui-text-center">
+		<div class="new-arrival-inner">新品上市 <span class="new-arrival-span">|</span> <span class="new-arrival-span2">舒适席梦思</span></div>
+		<div class="swiper-container">
+	        <div class="swiper-wrapper">
+	            <if condition="$new_products neq '' ">
+	        	<foreach name="new_products" item="v" key="k" >
+	            <div class="swiper-slide">
+	            	<div class="mui-text-center fl">
+						<a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v['goods_id']))}">
+						<img src="{$v.goods_id|goods_thum_images=150,150}" alt="" /></a>
+						<p class="swiper-wrapper-p1">{$v.goods_name}</p>
+						<p class="swiper-wrapper-p2">￥{$v.shop_price}</p>
+					</div>
+	            </div>
+				</foreach>
+				</if>
+	        </div>
+	   </div>
+		<a href="{:U('Mobile/Goods/goodsList')}" class="new-arrival-a">查看所有新品> </a>
+	</div>
+	
+	<!--达人推荐-->
+	<div class="recommend mui-text-center">
+		<div class="new-arrival-inner">达人推荐 <span class="new-arrival-span">|</span> <span class="new-arrival-span2">超高性价比</span></div>
+		<div class="recommend-content">
+			<div class="mui-slider" >
+			  <div class="mui-slider-group mui-slider-loop">
+			    <if condition="$recommendation neq '' ">
+			    <foreach name="recommendation.goods_images_list" item="v" key="k" >
+			    <div class="mui-slider-item">
+			      <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$recommendation['goods_id']))}">
+		        	<img src="{$v.goods_id|goods_thum_images=400,300}">
+		      	  </a>
+			    </div>
+			    </foreach>
+			    </if>
+			  </div>
+			  <div class="mui-slider-indicator">
+			    <div class="mui-indicator mui-active"></div>
+			    <div class="mui-indicator"></div>
+			    <div class="mui-indicator"></div>
+			  </div>
+			</div>
+			<div class="describe">
+				<p class="describe-title">方太侧吸风魔方抽油烟机</p>
+				<p class="describe-content">蝶翼环吸科技,带来强劲“立方环吸效应”,拓宽控烟范围，引领欧式油烟机全新时代,智能吸排系统,为油烟机装上“智慧大脑</p>
+				<div class="describe-price-out">
+					<p class="describe-price">￥1999</p>
+					<div class="shop-buy">购买</div>
+					<div class="shop-cart">加入购物车</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<!--猜你喜欢-->	
+	<div class="mui-text-center" style="background: #fbfbfb;">
+		<div class="new-arrival-inner">猜你喜欢 <span class="new-arrival-span">|</span> <span class="new-arrival-span2">超高性价比</span></div>
+	</div>
+	<!--下拉刷新容器-->
+	<div id="pullrefresh" class="mui-content ">
+		<!--<div class="mui-scroll">-->
+			<!--数据列表-->
+			<div class="mui-table-view mui-table-view-chevron" style="margin-top: 0px;">
+				<div class="content">
+				    <div class="lists">
+				    	<div class="recommend-content">
+							<div class="swiper-container2">
+						       <div class="swiper-wrapper">
+						           <div class="swiper-slide">
+						            	<img src="http://placehold.it/400x300" >
+						            </div>
+						            <div class="swiper-slide">
+						            	<img src="http://placehold.it/400x300" >
+						            </div>
+						            <div class="swiper-slide">
+						            	<img src="http://placehold.it/400x300" >
+						            </div>
+						        </div>
+						        <!-- Add Pagination -->
+						        <div class="swiper-pagination"></div>
+						    </div>
+						   	<div class="describe">
+								<p class="describe-title">方太侧吸风魔方抽油烟机</p>
+								<p class="describe-content">蝶翼环吸科技,带来强劲“立方环吸效应”,拓宽控烟范围，引领欧式油烟机全新时代,智能吸排系统,为油烟机装上“智慧大脑</p>
+								<div class="describe-price-out">
+									<p class="describe-price">￥1999</p>
+									<div class="shop-buy">购买</div>
+									<div class="shop-cart">加入购物车</div>
+								</div>
+							</div>
+						</div>
+						
+						
+				    </div>
+				    <div>
+						<!--<div > 加载更多 </div>-->  
+						<div class="load-more" id="more" data-status="1">加载更多</div>
+					</div>
+				</div>
+			</div>
+		<!--</div>-->
+	</div>
+	
+	<!--底部导航-->
+	<nav class="mui-bar mui-bar-tab">
+	    <a class="mui-tab-item mui-active">
+	        <span class="mui-icon mui-icon-home"></span>
+	        <span class="mui-tab-label">首页</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <i class="icon iconfont icon-fenlei mui-icon"></i>
+	        <span class="mui-tab-label">分类</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <i class="icon iconfont icon-gouwuchekong mui-icon"></i>
+	        <span class="mui-tab-label">购物车</span>
+	    </a>
+	    <a class="mui-tab-item">
+	        <i class="icon iconfont icon-wode mui-icon"></i>
+	        <span class="mui-tab-label">我的</span>
+	    </a>
+	</nav>
+	
+<!--搜索-->
+<div class="search-content">
+	<div class="search">
+		<span class="mui-icon mui-icon-search" style="position: absolute;top: 4px;left: 10px;"></span>
+		<input type="search" style="padding-left: 40px;text-align: left;" placeholder="请输入关键词"/>	
+		<span class="cancel">取消</span>
+	</div>
+	<div class="hot-search">
+		<span>热门搜索</span>
+		<ul>
+			<li>100-200</li>
+			<li>200-400</li>
+			<li>400-900</li>
+			<li>900-1000</li>
+		</ul>
+	</div>
+</div>
+</body>
+
+<script>
+//	swiper左右滑动
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 'auto',
+        spaceBetween: 10,
+    });
+    
+ var swiper2 = new Swiper('.swiper-container2', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true
+    });
+ $(".load-more").click(function () {  
+       var page = parseInt($("#page").val());  
+       $(this).html("加载中...");  
+       status=$(this).attr("data-status");  
+       if(status==1) {  
+           status = $(this).attr("data-status", "0");  
+           $.ajax({  
+               type: "post",  
+               url: "../../static/vendor/dropload/more.json",  
+               data: "page=" + page,  
+               dataType: "json",  
+               success: function (data) {  
+                  console.log(data.lists.length);
+                   // data = data.data;  
+                   /*数据不够10条隐藏按钮*/  
+                   data=data.lists;
+                   if (data.length < 10) {  
+                       $(this).hide()  
+                   } else {  
+                       $("#page").val(page + 1);//记录页码  
+                   }  
+                   insertDiv(data);  
+                   var swiper3 = new Swiper('.swiper-container3', {
+				        pagination: '.swiper-pagination',
+					        paginationClickable: true
+					    });
+                   }  
+               });  
+           }  
+  			
+  			
+       });  
+  
+       function insertDiv(data){  
+           var information = $(".lists");  
+       var html = '';  
+       for (var i = 0; i < 3; i++) {  
+           html +='<div class="recommend-content">'
+						+'<div class="swiper-container3">'
+					        +'<div class="swiper-wrapper">'
+					            +'<div class="swiper-slide">'
+					            	+'<img src="http://placehold.it/400x300" >'
+					            +'</div>'
+					            +'<div class="swiper-slide">'
+					            	+'<img src="http://placehold.it/400x300" >'
+					            +'</div>'
+					            +'<div class="swiper-slide">'
+					            	+'<img src="http://placehold.it/400x300" >'
+					            +'</div>'
+					        +'</div>'
+					        +'<!-- Add Pagination -->'
+					        +'<div class="swiper-pagination"></div>'
+					    +'</div>'
+					   	+'<div class="describe">'
+							+'<p class="describe-title">方太侧吸风魔方抽油烟机</p>'
+							+'<p class="describe-content">蝶翼环吸科技,带来强劲“立方环吸效应”,拓宽控烟范围，引领欧式油烟机全新时代,智能吸排系统,为油烟机装上“智慧大脑</p>'
+							+'<div class="describe-price-out">'
+								+'<p class="describe-price">￥1999</p>'
+								+'<div class="shop-buy">购买</div>'
+								+'<div class="shop-cart">加入购物车</div>'
+							+'</div>'
+						+'</div>'
+					+'</div>'  
+       }  
+       information.append(html);  
+       $("#more").html("加载更多");  
+       $("#more").attr("data-status","1");  
+   }  
+       
+       
+       
+</script>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>个人中心</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" href="__MOBILE_STATIC__/vendor/mui/mui.min.css" />
+<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/public.css" />
+<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/my.css"/>
+<script src="__MOBILE_STATIC__/vendor/jquery/jquery.1.11.1.js"></script>
+<script src="__MOBILE_STATIC__/vendor/mui/mui.min.js"></script>
+</head>
+<body>
+	<div class="my-content">
+		<div class="my-content-title">
+			<img src="__MOBILE_STATIC__/mobile/images/my.jpg" alt="" class="my-content-title-img"/>
+			<img src="{$user[head_pic]|default='__STATIC__/images/user68.jpg'}" alt="" class="my-content-title-img2"/>
+			<p class="my-content-Name">{$user['nickname']}</p>
+			<p class="my-content-integral">积分{$user['pay_points']}&nbsp;&nbsp;|&nbsp;&nbsp;余额¥{$user['user_money']}</p>
+			<a href="{:U('Mobile/User/userinfo')}" ><img src="__MOBILE_STATIC__/mobile/images/SetUp.png" alt="" class="my-content-title-img3"/></a>
+		</div>
+		<ul class="mui-table-view my-Order">
+		    <li class="mui-table-view-cell">
+		        <a class="mui-navigate-right" href="{:U('Mobile/User/order_list',array())}" >我的订单<span class="check-order"> 查看全部订单</span></a>
+		    </li>
+		</ul>
+		<ul class="documentary">
+			 <a  href="{:U('Mobile/User/order_list',array('type'=>'WAITPAY'))}" ><li>
+				<img src="__MOBILE_STATIC__/mobile/images/Pendingpayment.jpg" alt="" />
+				<p>待付款</p>
+			</li></a>
+			 <a  href="{:U('Mobile/User/order_list',array('type'=>'WAITSEND'))}" ><li>
+				<img src="__MOBILE_STATIC__/mobile/images/Waitingdelivery.jpg" alt="" />
+				<p>待发货</p>
+			</li></a>
+			 <a  href="{:U('Mobile/User/order_list',array('type'=>'WAITRECEIVE'))}" ><li>
+				<img src="__MOBILE_STATIC__/mobile/images/Accountreceivable.jpg" alt="" />
+				<p>待收货</p>
+			</li></a>
+			<a  href="{:U('Mobile/User/order_list',array('type'=>'WAITCCOMMENT'))}" ><li>
+				<img src="__MOBILE_STATIC__/mobile/images/completed.jpg" alt="" />
+				<p>已完成</p>
+			</li></a>
+		</ul>
+		<div class="line-1"></div>
+		<ul class="mui-table-view my-Order2">
+		    <li class="mui-table-view-cell">
+		        <a href="{:U('Mobile/User/account')}" class="mui-navigate-right">我的钱包</a>
+		    </li>
+		    <li class="mui-table-view-cell">
+		        <a href="{:U('Mobile/User/points')}" class="mui-navigate-right">我的积分</a>
+		    </li>
+		    <li class="mui-table-view-cell">
+		        <a href="{:U('Mobile/User/coupon')}" class="mui-navigate-right">我的优惠券</a>
+		    </li>
+		    <!-- <li class="mui-table-view-cell">
+		        <a href="{:U('Mobile/User/membercenter')}" class="mui-navigate-right">会员中心</a>
+		    </li> -->
+		    <li class="mui-table-view-cell">
+		        <a href="{:U('Mobile/User/collect_list')}" class="mui-navigate-right">我的收藏</a>
+		    </li>
+		    <li class="mui-table-view-cell">
+		        <a class="mui-navigate-right" href="tel:{$tpshop_config['phone']}">联系我们</a>
+		    </li>
+		</ul>
+	</div>
+	
+	
+	
+	<!--底部导航-->
+	<include file="Public/foot" />
+</body>
+<script>
+</script>
+</html>

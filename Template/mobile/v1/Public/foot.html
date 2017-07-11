@@ -1,0 +1,18 @@
+<nav class="mui-bar mui-bar-tab">
+    <a class="<if condition="CONTROLLER_NAME eq 'Index' and ACTION_NAME eq 'index'">mui-active</if>" style="padding-top: 4px;" href="{:U('Mobile/Index/index')}">
+        <i class="icon iconfont icon-shouye-icon1"></i>
+        <p class="mui-tab-label" style="margin-bottom: 0px;">首页</p>
+    </a>
+    <a class="<if condition="CONTROLLER_NAME eq 'Goods' and ACTION_NAME eq 'categoryList'">mui-active</if>" style="padding-top: 4px;" href="{:U('Mobile/Goods/categoryList')}">
+        <i class="icon iconfont icon-fenlei-icon"></i>
+        <p class="mui-tab-label" style="margin-bottom: 0px;">分类</p>
+    </a>
+    <a class="<if condition="CONTROLLER_NAME eq 'Cart' and ACTION_NAME eq 'cart'">mui-active</if>" style="padding-top: 4px;" href="{:U('Mobile/Cart/cart')}">
+        <i class="icon iconfont icon-gouwuche-icon"></i>
+        <p class="mui-tab-label" style="margin-bottom: 0px;">购物车</p>
+    </a>
+    <a class="<if condition="CONTROLLER_NAME eq 'User' and ACTION_NAME eq 'index'">mui-active</if>" style="padding-top: 4px;" href="{:U('Mobile/User/index')}">
+        <i class="icon iconfont icon-wode-icon1"></i>
+        <p class="mui-tab-label" style="margin-bottom: 0px;">我的</p>
+    </a>
+</nav>

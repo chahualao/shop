@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="http://m.shop.rehoming.cn/Template/mobile/new/Static/css/category_list.css" />
+
+	<body>
+		<header id="head_search_box" style="position: fixed; top: 0px; width: 100%; display: block;">
+			<div class="search_header">
+				<a href="javascript:history.back(-1)" class="back search_back"></a>
+				<div class="search">
+					<form name="sourch_form" id="sourch_form2" method="post" action="/index.php/Mobile/Goods/search.html">
+						<div class="text_box" name="list_search_text_box" onclick="return 1;">
+							<input type="text" class="text" name="q" id="keyword" value="手机" placeholder="搜索关键字">
+						</div>
+						<input type="button" value="" class="submit" onclick="if($.trim($('#keyword').val()) != '') $('#sourch_form2').submit();">
+					</form>
+				</div>
+				<a class="menu filtrate" name="list_go_filter" style=" color:#666">筛选</a>
+			</div>
+			<div style="height:51px;" class="empty_div">&nbsp;</div>
+			<section class="filtrate_term" id="product_sort" style="width: 100%; background: rgb(255, 255, 255); position: fixed; top: 51px; display: block;">
+				<ul>
+					<li class="on">
+						<a href="/index.php/Mobile/Goods/search/id/0/q/手机/sort/is_new">最新<span class="arrow_up"></span><span class="arrow_down"></span></a>
+					</li>
+					<li class="">
+						<a href="/index.php/Mobile/Goods/search/id/0/q/手机/sort/shop_price/sort_asc/desc">价格<span class="arrow_up"></span><span class="arrow_down"></span></a>
+					</li>
+					<li class="">
+						<a href="/index.php/Mobile/Goods/search/id/0/q/手机/sort/comment_count">销量<span class="arrow_up"></span><span class="arrow_down"></span></a>
+					</li>
+					<li class="">
+						<a href="javascript:;" class="show_type  show_list">&nbsp;</a>
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<div class="touchweb-com_searchListBox openList" id="goods_list" style="margin-top: 40px;">
+
+					<li>
+						<a href="/index.php/Mobile/Goods/goodsInfo/id/1.html" class="item">
+							<div class="pic_box">
+								<div class="active_box">
+									<span style=" background-position:0px -36px">新品</span>
+								</div>
+								<img src="/Public/upload/goods/thumb/1/goods_thumb_1_400_400.jpeg">
+							</div>
+							<div class="title_box">Apple iPhone 6s Plus 16G 玫瑰金 移动联通电信4G手机</div>
+							<div class="price_box">
+								<span class="new_price"><i>￥6007.00元</i></span>
+							</div>
+							<div class="comment_box">已售0</div>
+						</a>
+						<!--<div class="ui-number b">
+							<a class="decrease" onclick="goods_cut(1);">-</a>
+							<input class="num" id="number_1" type="text" onblur="changePrice();" value="1" onfocus="if(value=='1') {value=''}" size="4" maxlength="5">
+							<a class="increase" onclick="goods_add(1);">+</a>
+						</div>-->
+						<!--<span class="bug_car" onclick="AjaxAddCart(1,1,0);"><i class="icon-shop_cart"></i></span>-->
+						<div class="add_car">加入购物车</div>
+					</li>
+				</div>
+				<div id="getmore" style="font-size:.24rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both">
+					<a href="javascript:void(0)" onclick="ajax_sourch_submit()">点击加载更多</a>
+				</div>
+			</section>
+		</header>
+	</body>
+
+</html>

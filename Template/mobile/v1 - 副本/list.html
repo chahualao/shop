@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+	<link href="../../static/vendor/mui/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../../static/mobile/css/rehoming.css"/>
+	<link rel="stylesheet" href="../../static/mobile/css/list.css" />
+	
+	<body>
+		<header id="head_search_box" style="position: fixed; top: 0px; width: 100%; display: block;">
+			<div class="search_header">
+				<a href="javascript:history.back(-1)" class="back search_back"></a>
+				<div class="search">
+					<form name="sourch_form" id="sourch_form2" method="post" action="/index.php/Mobile/Goods/search.html">
+						<div class="text_box" name="list_search_text_box" onclick="return 1;">
+							<input type="text" class="text" name="q" id="keyword" value="手机" placeholder="搜索关键字">
+						</div>
+						<input type="button" value="" class="submit" onclick="if($.trim($('#keyword').val()) != '') $('#sourch_form2').submit();">
+					</form>
+				</div>
+				<a class="menu filtrate" name="list_go_filter" style=" color:#666">筛选</a>
+			</div>
+			<!--<div style="height:51px;" class="empty_div">&nbsp;</div>-->
+		</header>
+		<section class="filtrate_term" id="product_sort" style="width: 100%; background: rgb(255, 255, 255); position: fixed; top: 51px; display: block;">
+			<ul>
+				<li class="on">
+					<a href="/index.php/Mobile/Goods/search/id/0/q/手机/sort/is_new">最新<span class="arrow_up"></span><span class="arrow_down"></span></a>
+				</li>
+				<li class="">
+					<a href="/index.php/Mobile/Goods/search/id/0/q/手机/sort/shop_price/sort_asc/desc">价格<span class="arrow_up"></span><span class="arrow_down"></span></a>
+				</li>
+				<li class="">
+					<a href="/index.php/Mobile/Goods/search/id/0/q/手机/sort/comment_count">销量<span class="arrow_up"></span><span class="arrow_down"></span></a>
+				</li>
+				<li class="">
+					<a href="javascript:;" class="show_type  show_list">&nbsp;</a>
+				</li>
+			</ul>
+		</section>
+		<section class="content">
+			<div class="touchweb-com_searchListBox openList" id="goods_list" style="margin-top: 10px;overflow: hidden;padding-bottom: 10px;">
+				<li>
+					<a href="/index.php/Mobile/Goods/goodsInfo/id/1.html" class="item">
+						<div class="pic_box">
+							<img src="http://placehold.it/400x400">
+						</div>
+						<div class="title_box">Apple iPhone 6s Plus 16G 玫瑰金 移动联通电信4G手机</div>
+						<div class="add_car_out">
+							<div class="price_box">
+								<span class="new_price"><i>￥6007</i></span>
+							</div>
+							<div class="comment_box">已售0</div>
+							<div class="add_car">加入购物车</div>								
+						</div>		
+					</a>
+				</li>
+				<li>
+					<a href="/index.php/Mobile/Goods/goodsInfo/id/1.html" class="item">
+						<div class="pic_box">
+							<img src="http://placehold.it/400x400">
+						</div>
+						<div class="title_box">Apple iPhone 6s Plus 16G 玫瑰金 移动联通电信4G手机</div>
+						<div class="add_car_out">
+							<div class="price_box">
+								<span class="new_price"><i>￥6007</i></span>
+							</div>
+							<div class="comment_box">已售0</div>
+							<div class="add_car">加入购物车</div>								
+						</div>		
+					</a>
+				</li>
+				<li>
+					<a href="/index.php/Mobile/Goods/goodsInfo/id/1.html" class="item">
+						<div class="pic_box">
+							<img src="http://placehold.it/400x400">
+						</div>
+						<div class="title_box">Apple iPhone 6s Plus 16G 玫瑰金 移动联通电信4G手机</div>
+						<div class="add_car_out">
+							<div class="price_box">
+								<span class="new_price"><i>￥6007</i></span>
+							</div>
+							<div class="comment_box">已售0</div>
+							<div class="add_car">加入购物车</div>								
+						</div>		
+					</a>
+				</li>
+				<li>
+					<a href="/index.php/Mobile/Goods/goodsInfo/id/1.html" class="item">
+						<div class="pic_box">
+							<img src="http://placehold.it/400x400">
+						</div>
+						<div class="title_box">Apple iPhone 6s Plus 16G 玫瑰金 移动联通电信4G手机</div>
+						<div class="add_car_out">
+							<div class="price_box">
+								<span class="new_price"><i>￥6007</i></span>
+							</div>
+							<div class="comment_box">已售0</div>
+							<div class="add_car">加入购物车</div>								
+						</div>		
+					</a>
+				</li>
+			</div>
+			<div id="getmore" style="font-size:.24rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both;padding-top: 10px;margin-bottom: 10px;">
+				<a href="javascript:void(0)" onclick="ajax_sourch_submit()">点击加载更多</a>
+			</div>
+		</section>
+	
+	
+	
+		<div id="screen-modal">
+			<header class="mui-bar mui-bar-nav">
+			    <a class="mui-icon mui-icon-left-nav mui-pull-left" style="color: #454c5b;"></a>
+			    <h1 class="mui-title">筛选</h1>
+			</header>
+			<form action="" id="_select" style="margin-top: 44px;">
+				<div class="pub-column" >
+					<div class="pub-column-title">品牌</div>
+					<ul class="pub-column-checkbox-4" id="select-sign">
+						<li data='1'>品牌一</li>
+						<li>品牌二</li>
+						<li>品牌三</li>
+						<li>品牌四</li>
+						<li>品牌五</li>
+						<li>品牌六</li>
+						<li>品牌七</li>
+						<li>品牌八</li>
+					</ul>
+					<div class="pub-column-title">价格区间</div>
+					<ul class="pub-column-checkbox-3" id="select-cash">
+						<li data='100,200'>100-200</li>
+						<li>200-400</li>
+						<li>400-900</li>				
+					</ul>			
+				</div>
+				<div class="pub-column">
+					<div class="pub-column-title">标签</div>
+					<ul class="pub-column-checkbox-4" id="select-tag">
+						<li data='简约'>标签一</li>
+						<li>标签二</li>
+						<li>标签三</li>
+						<li>标签四</li>
+						<li>标签五</li>
+						<li>标签六</li>
+						<li>标签七</li>
+						<li>标签八</li>
+					</ul>
+				</div>
+				<ul class="mui-table-view">
+				    <li class="mui-table-view-cell mui-collapse">
+				        <a class="mui-navigate-right border-bottom" href="#" id="view-color">颜色</a>
+				        <div class="mui-collapse-content border-bottom">
+				            <ul class="pub-column-color" style="padding: 0;">
+				            	<li style="background: #ef2230" data=""></li>
+				            	<li style="background: #fa9e48;"></li>
+				            	<li style="background: #fcd351;"></li>
+				            	<li style="background: #acdf7c;"></li>
+				            	<li style="background: #316cdb;"></li>
+				            	<li style="background: #be50b7;"></li>
+				            	<li style="background: #aa6b22;"></li>
+				            	<li style="background: #a6a6a6;"></li>
+				            	<li style="background: #f0f0f0;"></li>
+				            	<li style="background: #0e0e0e;"></li> 
+				            </ul>
+				        </div>
+				    </li>
+				    <li class="mui-table-view-cell mui-collapse">
+				        <a class="mui-navigate-right border-bottom" href="#" id="view-class">分类</a>
+				            <div class="mui-collapse-content border-bottom">
+				            <ul class="pub-column-checkbox-4" id="select-class">
+								<li>分类一</li>
+								<li>分类二</li>
+								<li>分类三</li>
+								<li>分类四</li>
+								<li>分类五</li>
+								<li>分类六</li>
+								<li>分类七</li>
+								<li>分类八</li>
+							</ul>
+				        </div>
+				    </li>
+				    <li class="mui-table-view-cell mui-collapse">
+				        <a class="mui-navigate-right border-bottom" href="#" id="view-material">材质</a>
+				        <div class="mui-collapse-content border-bottom">
+				            <ul class="pub-column-checkbox-4" id="select-material">
+								<li>材质一</li>
+								<li>材质二</li>
+								<li>材质三</li>
+								<li>材质四</li>
+								<li>材质五</li>
+								<li>材质六</li>
+								<li>材质七</li>
+								<li>其他</li>
+							</ul>
+				        </div>
+				    </li>
+				    <li class="mui-table-view-cell mui-collapse">
+				        <a class="mui-navigate-right border-bottom" href="#" id="view-style">风格</a>
+				        <div class="mui-collapse-content border-bottom">
+				            <ul class="pub-column-checkbox-4" id="select-style">
+								<li>欧式</li>
+								<li>新中式</li>
+								<li>现代</li>
+								<li>地中海</li>
+								<li>东南亚</li>
+								<li>新古典</li>
+								<li>日式</li>
+								<li>韩式</li>
+							</ul>
+				        </div>
+				    </li>
+				</ul>
+				<div class="select-btnbox mui-clearfix">
+					<input type="button" name="select-reset" id="select-reset" value="重置" onclick="resetfun()" />
+					<input type="button" name="select-submit" id="select-submit" value="完成" onclick="getSelect()" />
+				</div>
+			</form>	
+		</div>
+	</body>
+	<script type="text/javascript" src="../../static/vendor/jQuery/jquery-3.1.1.min.js"></script>
+	<script src="../../static/vendor/mui/mui.min.js"></script>
+	<script type="text/javascript" src="../../static/mobile/js/list.js"></script>
+	<script type="text/javascript">
+		mui.init()			
+	</script>
+</html>

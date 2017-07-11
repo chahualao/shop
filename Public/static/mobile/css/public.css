@@ -1,0 +1,231 @@
+.fl{float: left;}
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, textarea, iframe, table, th, td {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+cite, em, s, i, b {
+    font-style: normal;
+}
+/*iphone手机的input的样式问题*/
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button {
+-webkit-appearance: none;
+}
+.mui-slider-indicator .mui-indicator {
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px 0px;
+}
+/*菜单*/
+.top_bt,.user_btn,.show_cart{background:url(../images/pub_flow.png) no-repeat;background-size: auto 160px; }
+.menu1,.menu2,.menu3,.menu4,#show_more{background:url(../images/pub_goods.png) no-repeat;background-size: auto 200px;}
+.dingdan_1,.dingdan_2,.dingdan_3,.dingdan_4{background:url(../images/pub_main.png) no-repeat;background-size: auto 450px;}
+.vf_1,.vf_2,.vf_3,.vf_4,.vf_5{background:url(../images/pub_main.png) no-repeat;background-size: auto 400px;}
+#show_more{width:30px; height:30px; float:right;background-position:0 -110px; margin-left:10px; margin-top:10px;box-sizing: content-box;margin-left: -23px;}
+
+.menu1 {
+    background-position: 0 4px;
+}
+.menu2 {
+    background-position: 0 -19px;
+}
+.menu3 {
+    background-position: 0 -41px;
+}
+.menu4 {
+    background-position: 0 -64px;
+}
+/*顶部导航*/
+.header {
+    width: 100%;
+    height: 45px;
+    background: #f6f6f6;
+    top: 0;
+    z-index: 9999;
+    border: 0;
+    border-bottom: 1px solid #CCC;
+}
+.h-left {
+    float: left;
+    width: 15%;
+    height: 45px;
+}
+.h-left a {
+    display: block;
+    width: 45px;
+    height: 45px;
+    margin: auto;
+    background: url(../images/arrow_left.png) no-repeat 15px center;
+    background-size: auto 16px;
+}
+.h-mid {
+    width: 70%;
+    height: 45px;
+    float: left;
+    text-align: center;
+    color: #333;
+    font-size: 16px;
+    line-height: 45px;
+    position: relative;
+    font-family: "微软雅黑", "宋体", Arial, Helvetica, sans-serif;
+}
+.h-right {
+    float: left;
+    width: 15%;
+    height: 45px;
+}
+.top_bar {
+    float: right;
+    display: block;
+    margin-right: 8px;
+    width: 40px;
+    height: 40px;
+}
+
+/*点击*/
+/*弹出菜单*/
+.top_bar{float:right; display:block; width:100px;  height:40px; background:none}
+.show_cart{float:right; width:40px; height:40px; padding-top:5px; position:relative; background-position:0 -75px;background-size: auto 150px;margin-right: 22px;}
+
+.global-nav__nav-shop-cart-num{
+  position: absolute;left: 50%; top: 3px;color: #fff;text-align: center; font-weight:normal; font-size:12px; font-family:宋体;width:16px; height:16px; line-height:16px;     background: #ff2233;
+    border-radius: 50%;}
+.Triangle {
+    width: 100%;
+    height: 20px;
+}
+.Triangle h2 {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent transparent #565553 transparent;
+    border-width: 10px;
+    transition: 0.6s;
+    float: right;
+    margin-right: 10px;
+}
+.goods_nav ul {
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(46,45,45,0.9);
+    border-radius: 2px;
+}
+.goods_nav li {
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #959595;
+}
+.goods_nav li span {
+    display: block;
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.goods_nav li i {
+    font-style: normal;
+    color: #f3f1f1;
+    font-size: 14px;
+    display: block;
+    float: left;
+    line-height: 40px;
+}
+.goods_nav{ width:30%; float:right; right:5px; overflow:hidden; position:fixed;margin-top:25px; z-index:100;display: none;top: 0px;}
+
+/*单选框效果*/
+label i {
+	font-size:12px;
+	font-style:normal;
+	display:inline-block;
+	width:18px;height:18px;
+	text-align:center;
+	line-height:16px;
+	color:#fff;
+	border-radius: 50%;
+	vertical-align:middle;
+	margin:-2px 2px 1px 0px;
+	border:#232220 1px solid;
+}
+input[type="radio"]{
+	display:none;
+}
+input[type="radio"]:checked + i {
+	background:#232220;
+}
+input[type="radio"]:disabled + i {
+	border-color:#ccc;
+}
+input[type="checkbox"]{
+	display:none;
+}
+input[type="checkbox"]:checked + i {
+	background:#232220;
+}
+input[type="checkbox"]:disabled + i,input[type="checkbox"]:checked:disabled + i {
+	border-color:#ccc;
+}
+/*弹出*/
+.shop-popover{height: 400px;width: 100%;}
+.shop-popover .thumb{position: absolute;top: -25px;left: 10px;width:30%;}
+.shop-popover-div{width: 55%;margin-left: 34%;padding-top: 22px;}
+#shop-popover{padding: 0px 10px;background: #fff;position: relative;position: fixed;bottom: 0px;background: #fff;z-index: 10000;display: none;width: 100%;}
+.shop-popover-div span{color: #e75058;}
+.shop-popover-div del{color: #6b6b6b;}
+.shop-select-title{margin-left: 34%;font-size: 16px;padding-top: 16px;padding-bottom: 20px;}
+.tag-alert .mui-row{padding-left: 0px;}
+.shop-popover-content{overflow-y: scroll;height: 300px;}
+.shop-popover-content .mui-row{border-bottom: 1px solid #eaeaea;}
+.shop-popover-content .tag-alert{padding-top: 20px;overflow: hidden;}
+.mui-numbox{float: right;}
+.modal{    position: fixed;
+    z-index: 999;
+    overflow: hidden;
+    width: 100%;
+    min-height: 100%;
+    -webkit-transition: -webkit-transform .25s,opacity 1ms .25s;
+    transition: transform .25s,opacity 1ms .25s;
+    -webkit-transition-timing-function: cubic-bezier(.1,.5,.1,1);
+    transition-timing-function: cubic-bezier(.1,.5,.1,1);
+    -webkit-transform: translate3d(0,100%,0);
+    transform: translate3d(0,100%,0);
+    opacity: 0.3;display: none;
+    background-color: #000;
+    bottom: 100%;}
+.confirm {
+    background: #232220;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    font-size: 18px;margin-top: 10px;margin-bottom: 10px;
+}
+.shop-popover-close{position: absolute;top: 10px;right: 12px;}
+.shop-popover-close img{width: 30px;}
+.mui-bar-tab .mui-active .mui-tab-label{color: #a08255;}
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+color: #000;
+}
+
+/*底部导航*/
+.mui-bar-tab a {
+    display: table-cell;
+    overflow: hidden;
+    width: 1%;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #929292;
+}
+.mui-bar-tab .mui-active{color:#a08255;}
+.mui-slider-indicator .mui-indicator{background: #232220;}
+.mui-slider-indicator .mui-active.mui-indicator{background: #a08255;}
+.mui-slider-indicator .mui-indicator{margin: 1px 0px;}
+.tab_nav .header{background: #fff;}
+/*轮播图*/
+.swiper-pagination{z-index: 8;}

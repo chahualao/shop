@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>瑞和家商城</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/vendor/mui/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/rehoming.css"/>
+    <style type="text/css">
+    	.itemtab-menu li>a {
+		    font-size: 12px;
+		    color: #bbb;
+		    display: block;
+		    transition: color .4s;
+	    }
+	    .goods-sum{
+	    	font-family: 'Helvetica Neue';
+	    	font-size: 13px;
+	    	margin-bottom: -5px;
+	    }
+		#goods-cash-sum{
+			margin-left: 10px;
+		}
+    </style>
+</head>
+<body style="background-color: #FBFBFB;">
+	<header class="mui-bar mui-bar-nav pub-head">	<!--头部导航-->
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left pub-head-back"></a>
+        <h1 class="mui-title">我的订单</h1>
+        <a class="mui-pull-right pub-head-more" id="show_more"></a>        	
+    <!--顶部右边more下拉菜单-->
+	<include file="Public/right_top_menu" />
+   	</header>   <!--头部导航结束--> 
+   	<div class="my_pub-white-box">
+		<ul class="itemtab-menu">
+			<li class="<if condition="$_GET[type] eq ''">item-active</if>"><a href="{:U('/Mobile/User/order_list')}">全部</a></li>
+      <li class="<if condition="$_GET[type] eq 'WAITPAY'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITPAY'))}">待付款</a></li>
+      <li class="<if condition="$_GET[type] eq 'WAITSEND'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITSEND'))}">待发货</a></li>
+      <li class="<if condition="$_GET[type] eq 'WAITRECEIVE'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITRECEIVE'))}">待收货</a></li>
+      <li class="<if condition="$_GET[type] eq 'WAITCCOMMENT'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITCCOMMENT'))}">已完成</a></li>
+		</ul>			
+   	</div>
+    <form action="{:U('Mobile/order_list/ajax_order_list')}" name="filter_form" id="filter_form">
+   	<ul class="itemlist" style="display: block;">
+      <volist name="lists" id="list">
+   		<li class="itemlist-one mui-clearfix">
+   			<div class="itemlist-bottom">
+   				<img src="__MOBILE_STATIC__/mobile/images/shop.png" style="width: 24px;" />
+   				<span class="goods-caption">订单号:</span>
+   				<strong class="goods-num" id="goods-num">{$list.order_sn}</strong>
+   				<img src="__MOBILE_STATIC__/mobile/images/icoright.png" style="width: 20px; float: right;"/>
+   			</div>
+          <a href="{:U('/Mobile/User/order_detail',array('id'=>$list['order_id']))}">
+        <volist name="list.goods_list" id="good">
+   			<div class="itemlist-bottom mui-clearfix">
+   				<div class="goods-img"><img src="{$good.goods_id|goods_thum_images=200,200}"/></div>
+   				<div class="itemlist-bottom-mid">
+   					<p class="goods-name">{$good.goods_name}</p>
+   					<p class="goods-color">{$good.spec_key_name}</p>
+   				</div>
+   				<div class="itemlist-bottom-r">
+   					<p class="goods-cash-now">¥<span id="goods-cash-now">{$good['member_goods_price']}</span></p>
+   					<p class="goods-cash-old">¥<span id="goods-cash-old">{$good['shop_price']}</span></p>
+   					<p class="goods-amount">×<span id="goods-amount">{$good['goods_num']}</span></p>
+   				</div>
+   			</div>
+        </volist></a>
+   			<div class="itemlist-bottom mui-clearfix">
+   				<p class="goods-sum">共<span id="goods-amount">{$list.goods_list|count}</span>件商品实付:<span id="goods-cash-sum">¥{$list['order_amount']}</span></p>
+   			</div>
+        <if condition="$list.cancel_btn eq 1">	
+   			<input type="button" class="goods-btn" onClick="cancel_order({$list.order_id})" value="取消订单" /></if>
+        <if condition="$list.pay_btn eq 1"><a href="{:U('Mobile/Cart/cart4',array('order_id'=>$list['order_id']))}">  
+        <input type="button" class="goods-btn" value="立即付款" /></a></if>
+        <if condition="$list.receive_btn eq 1"><a href="{:U('Mobile/User/order_confirm',array('id'=>$list['order_id']))}">  
+        <input type="button" class="goods-btn" value="确认收货" /></a></if>
+        <if condition="$list.comment_btn eq 1"><a href="{:U('/Mobile/User/comment')}">  
+        <input type="button" class="goods-btn" value="评价订单" /></a></if>
+        <if condition="$list.shipping_btn eq 1"><a href="{:U('User/express',array('order_id'=>$list['order_id']))}">  
+        <input type="button" class="goods-btn" value="查看物流" /></a></if>
+
+   		</li>
+      </volist>
+   	</ul>
+    <!--查询条件-->
+    <input type="hidden" name="type" value="<?php echo $_GET['type'];?>" />
+    </form>
+<script src="__MOBILE_STATIC__/vendor/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>    
+<script src="__MOBILE_STATIC__/vendor/jquery/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__MOBILE_STATIC__/mobile/js/public.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+  mui.init();/*mui框架初始化*/
+  //取消订单
+  function cancel_order(id){
+  mui.confirm('确定要取消订单吗？','亲',['取消','确认'],function (e) {          
+    if(e.index==1){
+       location.href = "/index.php?m=Mobile&c=User&a=cancel_order&id="+id; 
+    }
+  },'div')
+  }
+</script>
+</body>
+</html>

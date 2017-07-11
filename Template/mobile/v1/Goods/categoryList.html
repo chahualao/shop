@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/vendor/mui/mui.min.css"/>
+<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/public.css" />
+<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/iconfont.css" />
+<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/category.css" />
+<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/category2.css">
+<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/search.css" />
+<script type="text/javascript" src="__MOBILE_STATIC__/vendor/mui/mui.min.js"></script>
+<script type="text/javascript" src="__MOBILE_STATIC__/vendor/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="__MOBILE_STATIC__/mobile/js/category.js"></script>
+<script src="__MOBILE_STATIC__/mobile/js/public.js"></script>
+<style type="text/css">
+	@media only screen and (width: 375px) {
+		.tab-content2 li img {
+			height: 95px !important;
+		}
+	}
+</style>
+</head>
+<body>
+	<div class="content">
+		<div class="category-header">
+			<i class="active">品类</i>
+			<i>品牌</i>
+			<!-- <span class="mui-icon mui-icon-search"></span> -->
+			<img src="__MOBILE_STATIC__/mobile/images/searchicon.png" alt="" / class="search-icon">
+		</div>
+		<div class="tab-content tab-content2 active">
+			<ul>
+			<foreach name="goods_category_tree" item="vo" key="k">
+			<if condition="$vo[level] eq 1">
+			<li>
+				<a href="{:U('Mobile/Goods/goodsList',array('id'=>$vo['id']))}"><img src="{$vo.image}" alt="" /></a>
+			</li>
+			</if>
+			</foreach>
+			</ul>
+		</div>
+		<div class="tab-content">
+			<div id="letter" ></div>
+			<div class="sort_box">
+				<foreach name="brand_list" item="brand" key="b_K">
+				<div class="sort_list">
+					<a href="{:U('Mobile/Goods/goodsList',array('brand_id'=>$brand['id']))}"><div class="num_name">{$brand['name']}</div></a>
+				</div>
+				</foreach>
+			</div>
+			<div class="initials">
+				<ul>
+					<li><img src="__MOBILE_STATIC__/mobile/images/068.png"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<!--底部导航-->
+	<include file="Public/foot" />
+	
+<!-- 搜索 -->
+<div class="search-content">
+	<div class="search">
+		<span class="mui-icon mui-icon-search" style="position: absolute;top: 4px;left: 10px;"
+		onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();"></span>
+		<form id="sourch_form" name="sourch_form" method="post" action="{:U('Goods/search')}"><input type="search" name="q" id="q" value="<?php echo I('q'); ?>" style="padding-left: 40px;text-align: left;" placeholder="请输入关键词"/></form>
+			
+		<span class="cancel">取消</span>
+		<span style="display:none;" class="searchIn" onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();">搜索</span>
+	</div>
+	<div class="hot-search">
+		<span>热门搜索</span>
+		<ul>
+			<foreach name="tpshop_config.hot_keywords" item="wd" key="k">
+               <li><a href="{:U('Goods/search',array('q'=>$wd))}" <if condition="$k eq 0">class="ht"</if>>{$wd}</a></li>
+            </foreach> 
+		</ul>
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="__MOBILE_STATIC__/vendor/mailList/jquery.charfirst.pinyin.js"></script>
+<script type="text/javascript" src="__MOBILE_STATIC__/vendor/mailList/sort.js"></script>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>瑞和家商城</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/vendor/mui/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/rehoming.css"/>
+    <style type="text/css">
+    	select{
+    		width: auto !important;
+    		height: 49px;
+    		margin-right: 10px;
+    		/*border: 1px solid #ccc !important; */		
+    	}
+    </style>
+</head>
+<body style="background-color: #FBFBFB;">
+    <header class="mui-bar mui-bar-nav pub-head">	<!--头部导航-->
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left pub-head-back"></a>
+        <h1 class="mui-title">编辑地址</h1>
+        <a href="javascript:;" class="mui-pull-right pub-head-more" style="font-size: 16px;padding-right: 0;" onclick="postAddrForm()">保存</a>
+    </header>
+    <form action="{:U('Mobile/User/edit_address')}" method="post" id="addForm">
+    <div class="my_pub-white-box">
+    	<div class="my_pub-content-box-row mui-clearfix mui-input-row">
+			<span class="pub-t">收货人</span>
+			<input type="text" name="consignee" value="{$address.consignee}" class="pub-txt mui-input-clear" maxlength="16"/>			
+		</div>
+		<div class="my_pub-content-box-row mui-clearfix mui-input-row">
+			<span class="pub-t">联系电话</span>
+			<input type="tel" name="mobile" value="{$address.mobile}" class="pub-txt mui-input-clear"  maxlength="16"/>			
+		</div>		
+		<div class="my_pub-content-box-row mui-clearfix" style="height: auto;">
+			<span class="pub-t">所在地区</span>
+			<select id="s_province" name="province"></select>
+		    <select id="s_city" name="city"></select>
+		    <select id="s_county" name="district"></select>	 		
+		</div>
+		<div class="div-txt">
+			<textarea name="address" style="overflow:hidden;width: 100%;border: none;font-size: 14px;" >{$address.address}</textarea>
+		</div>
+		
+    </div>
+    <input type="hidden" name="id" value="{$address.address_id}" />
+    </form>
+    
+    <div id="delbtn-div" class="delbtn-div"  onclick="delAddress({$address.address_id});">删除地址</div>
+    
+    <script src="__MOBILE_STATIC__/vendor/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__MOBILE_STATIC__/vendor/jquery/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__MOBILE_STATIC__/mobile/js/area.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__MOBILE_STATIC__/mobile/js/public.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    mui.init();
+    //删除地址
+   function delAddress(id){
+        mui.confirm('确定要删除该地址吗？','亲',['取消','确认'],function (e) {
+                
+                if(e.index==1){
+                    location.href="{:U('Mobile/User/del_address')}?id="+id;
+                }
+            },'div')
+   }
+   //提交表单
+   function postAddrForm(){
+   		//表单验证
+   		var consignee = $('input[name="consignee"]').val();
+        var province = $('select[name="province"]').find('option:selected').val();
+        var city = $('select[name="city"]').find('option:selected').val();
+        var district = $('select[name="district"]').find('option:selected').val();
+        var address = $('input[name="address"]').val();
+        var mobile = $('input[name="mobile"]').val();
+        var error = '';
+        if(consignee == ''){
+            error += '收货人不能为空 <br/>';
+        }
+        if(province=='省份'){
+            error += '请选择省份 <br/>';
+        }
+        if(city=='地级市'){
+            error += '请选择城市 <br/>';
+        }
+        if(district=='市、县级市'){
+            error += '请选择区域 <br/>';
+        }
+        if(address == ''){
+            error += '请填写详细地址 <br/>';
+        }
+        if(mobile==''){
+            error += '手机号码格式有误 <br/>';
+		}
+		if(error){
+			mui.confirm(error,'提示',['确认'],function (e) {
+                
+                if(e.index==0){
+                   
+                }
+            },'div')
+            return false;
+		}else{
+			$('#addForm').submit();
+		}
+
+   }
+
+   _init_area();
+		
+	 	var Gid  = document.getElementById ;
+		
+//		var showArea = function(){
+//	
+//		Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" + 	
+//	
+//		Gid('s_city').value + " - 县/区" + 
+//	
+//		Gid('s_county').value + "</h3>"
+//	
+//								}
+//		Gid('s_county').setAttribute('onchange','showArea()');
+	
+	(function($){
+	  $.fn.autoTextarea = function(options) {
+	    var defaults={
+	      maxHeight:null,
+	      minHeight:$(this).height()
+	    };
+	    var opts = $.extend({},defaults,options);
+	    return $(this).each(function() {
+	      $(this).bind("paste cut keydown keyup focus blur",function(){
+	        var height,style=this.style;
+	        this.style.height = opts.minHeight + 'px';
+	        if (this.scrollHeight > opts.minHeight) {
+	          if (opts.maxHeight && this.scrollHeight > opts.maxHeight) {
+	            height = opts.maxHeight;
+	            style.overflowY = 'scroll';
+	          } else {
+	            height = this.scrollHeight;
+	            style.overflowY = 'hidden';
+	          }
+	          style.height = height + 'px';
+	        }
+	      });
+	    });
+	  };
+	})(jQuery);
+   
+   $(function(){
+   		/*$(".div-txt textarea").autoTextarea({
+		   maxHeight:400,
+		   minHeight:20
+		 });	*/	
+   		//自动填充
+   		/*$("#s_county").change(function(){
+   			var a =$("#s_province").val();
+	   		var b =$("#s_city").val();
+	   		var c =$("#s_county").val();
+	   		$(".div-txt textarea").html('');
+	   		$(".div-txt textarea").append(a+b+c);	   		
+   		})*/
+  		   
+	})
+	 
+    </script>
+</body>
+</html>

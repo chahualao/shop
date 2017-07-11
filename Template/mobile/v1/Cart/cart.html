@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="__MOBILE_STATIC__/vendor/mui/mui.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/public.css" />
+	<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/shoppingCart.css" />
+	<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/package.css" />
+	<script type="text/javascript" src="__MOBILE_STATIC__/vendor/jquery/jquery-3.1.1.min.js"></script>
+	<script src="__MOBILE_STATIC__/vendor/mui/mui.min.js"></script>
+	<script type="text/javascript" src="__MOBILE_STATIC__/mobile/js/public.js"></script>
+</head>
+<body>
+	<!--头部导航-->
+	<div class="tab_nav">
+		<div class="header">
+			<div class="h-left">
+				<a class="sb-back" href="javascript:history.back(-1)" title="返回"></a>
+			</div>
+			<div class="h-mid">购物车</div>
+		</div>
+	</div>
+	<!--组合套餐内容-->
+	<div class="package-content">
+		<div class="package-content-line"></div>
+		<ul class="package-content-ul">
+			<li>
+				<label>
+					<input type="checkbox"  value="1" /><i>√</i>
+				</label>
+				<div class="package-content-ul-div">
+					<div class="mui-row box">
+						<!--<div class="box">-->
+							<img src="http://placehold.it/400x400" alt="" class="mui-col-xs-3"/>
+						<!--</div>-->
+						<div class="package-content-ul-div-inner mui-col-xs-6" >
+							<div class="package-content-ul-div-inner-title">
+								Apple iphone 6s Plus 32G
+							</div>
+							<div class="package-content-ul-div-inner-attribute">
+								网络：4G 颜色：黑色 内存：32G
+							</div>
+							<div class="mui-numbox" style="float:left;">
+							  <!-- "-"按钮，点击可减小当前数值 -->
+							  <button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+							  <input class="mui-numbox-input" type="number" />
+							  <!-- "+"按钮，点击可增大当前数值 -->
+							  <button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+							</div>
+						</div>
+						<div class="mui-col-xs-3 package-price">
+							<p>￥3599.00元</p>
+							<del>￥1269.00元</del>
+							<img src="__MOBILE_STATIC__/mobile/images/shoppingCart2.jpg" alt="" />
+						</div>
+					</div>
+				</div>	
+			</li>
+			
+		</ul>
+	</div>	
+	
+	<!--底部购买-->
+	<div class="bottom-buy">
+		<div class="mui-row">
+			<label class="mui-col-xs-3 mui-row-label">
+				<input id="checkAll" type="checkbox" name="address" value="" /><i>√</i>全选
+			</label>
+			<div class="bottom-buy-price mui-col-xs-5">
+				<p class="bottom-buy-price-p1">总计：￥23990元</p>
+				<p class="bottom-buy-price-p2">不含运费</p>
+			</div>
+			<div class="mui-col-xs-4 buy-now" style="float: right;">
+				立刻购买
+			</div>
+		</div>
+	</div>
+	
+	<!--底部弹出-->
+	<div id="shop-popover">
+		<div class="shop-popover">
+			<div class="shop-popover-close">
+				<img src="__MOBILE_STATIC__/mobile/images/shop-popover-close.png">
+			</div>
+			<img src="http://placehold.it/100x100" alt="" class="thumb">
+			<div class="shop-popover-div">
+				<span>￥45</span>
+				<del>￥50</del>
+			</div>
+			<div class="shop-select-title">选择 <span>型号</span> <span>颜色分类</span></div>
+			<div class="">
+				<div class="shop-popover-content ">
+					<div class="tag-alert">
+						型号
+						<div class="tag tag-click">
+							<div class="mui-row">
+								<div>
+									<li class="mui-table-view-cell active">标签1</li>
+								</div>
+								<div>
+									<li class="mui-table-view-cell">标签2</li>
+								</div>
+								<div>
+									<li class="mui-table-view-cell">标签3</li>
+								</div>
+								<div>
+									<li class="mui-table-view-cell">标签4</li>
+								</div>
+								<div>
+									<li class="mui-table-view-cell">标签5</li>
+								</div>
+								<div>
+									<li class="mui-table-view-cell">标签6</li>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tag-alert">
+						颜色分类
+						<div class="tag tag-click">
+							<div class="mui-row">
+								<div>
+									<li class="mui-table-view-cell active">颜色1</li>
+								</div>
+								<div>
+									<li class="mui-table-view-cell">颜色2</li>
+								</div>
+								<div>
+									<li class="mui-table-view-cell">颜色3</li>
+								</div>
+								<div>
+									<li class="mui-table-view-cell">颜色4</li>
+								</div>
+								<div>
+									<li class="mui-table-view-cell">颜色5</li>
+								</div>
+								<div>
+									<li class="mui-table-view-cell">颜色6</li>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tag-alert ">
+						<span style="height: 40px;line-height: 40px;">选择数量</span>
+						<div class="mui-numbox">
+							<!-- "-"按钮，点击可减小当前数值 -->
+							<button class="mui-btn mui-numbox-btn-minus" type="button">-</button>
+							<input class="mui-numbox-input" type="number">
+							<!-- "+"按钮，点击可增大当前数值 -->
+							<button class="mui-btn mui-numbox-btn-plus" type="button">+</button>
+						</div>
+					</div>
+					<p class="confirm">确定</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal"></div>
+	<!--顶部菜单-->
+	<include file="Public/right_top_menu" />
+</body>
+<script>
+	
+	
+	$("#checkAll").click(function() {
+        $('.package-content-ul input').prop("checked",this.checked); 
+   });
+</script>
+</html>

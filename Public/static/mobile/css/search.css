@@ -1,0 +1,9 @@
+ul{list-style: none;margin: 0px;padding: 0px;}
+.search-content{padding: 0px 15px;padding-top: 15px;position: fixed;z-index: 10;top: 0px;background: #fff;height: 100%;display: none;width: 100%;}
+.search{position: relative;padding-right: 40px;}
+.search .cancel,.search .searchIn{line-height: 26px;position: absolute;right: 0px;top: 0px;color: #1a1a1a;font-size: 15px;}
+.hot-search li{float: left;text-align: center;background: #f0f0f0;color: #333333;padding:4px 20px;margin-right: 15px;margin-bottom: 10px;font-size: 12px;}
+.hot-search ul{overflow: hidden;margin-top: 8px;}
+.hot-search a{color: #333;}
+input[type=search]{height: 26px;font-size: 13px;background: #f0f0f0;}
+.hot-search span{color: #666666;font-size: 14px;}

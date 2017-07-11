@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/vendor/mui/mui.min.css" />
+	<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/public.css" />
+	<link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/memberCenter.css" />
+	<script type="text/javascript" src="__MOBILE_STATIC__/vendor/jquery/jquery.1.11.1.js"></script>
+	<script type="text/javascript" src="__MOBILE_STATIC__/vendor/mui/mui.min.js"></script>
+	<script src="__MOBILE_STATIC__/mobile/js/ort.js"></script>
+	<script type="text/javascript" src="__MOBILE_STATIC__/mobile/js/public.js"></script>
+</head>
+<body>
+	<!--头部-->
+	<div class="tab_nav">
+		<div class="header">
+			<div class="h-left">
+				<a class="sb-back" href="javascript:history.back(-1)" title="返回"></a>
+			</div>
+			<div class="h-mid">会员中心</div>
+			<div class="h-right">
+				<aside class="top_bar">
+					<div id="show_more">
+						<a href="javascript:;"></a>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</div>
+	<!--顶部菜单-->
+	<include file="Public/right_top_menu" />
+	
+	<div class="member-content">
+		<img src="__MOBILE_STATIC__/mobile/images/member.jpg" alt="" class="member-content-bg"/>
+		<img src="__MOBILE_STATIC__/mobile/images/memberHead.jpg" alt="" class="member-head"/>
+		<p class="member-rank">VIP1</p>
+		<p class="member-rank-p">会 员 等 级</p>
+		<p class="member-rank2">还差<span>200</span>点成长值升级成为VIP<span>2</span></p>
+		<ul class="rank-point-ul">
+			<li class="active">
+				<span class="rank-point"></span>
+				<span class="linear"></span>
+				<span class="linear_mask" style="width: 50px;"></span>
+			</li>
+			<li>
+				<span class="rank-point"></span>
+				<span class="linear"></span>
+				<span class="linear_mask"></span>
+			</li>
+			<li>
+				<span class="rank-point"></span>
+				<span class="linear"></span>
+				<span class="linear_mask"></span>
+			</li>
+			<li>
+				<span class="rank-point"></span>
+				<span class="linear"></span>
+				<span class="linear_mask"></span>
+			</li>
+			<span class="rank-point" style="position: absolute;top: -11px;"></span>
+		</ul>
+		<!--<div class="line"></div>-->
+		<div class="fen" id="third">
+			<img src="__MOBILE_STATIC__/mobile/images/V3.png" alt="" />
+			<p>每天领取积分上限50个</p>
+		    <span id="top"></span>
+		</div>
+	</div>
+</body>
+</html>

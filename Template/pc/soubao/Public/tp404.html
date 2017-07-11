@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>系统提示</title>
+</head>
+<body>
+<p style="text-align: center;vertical-align:middle;">哎呦，我迷路了 :(</p>
+<p style="text-align: center;"><span id="remaining" style="padding:0 4px;color:#900b09;">3000</span>秒钟后跳转首页</p>
+<script type="text/javascript">
+
+var i = 3;  
+function remainTime(){  
+    if(i==0){  
+        location.href='http://shop.rehoming.cn';  
+    }  
+    document.getElementById('remaining').innerHTML=i--;  
+    setTimeout("remainTime()",1000);  
+}  
+remainTime();
+</script>
+</body>
+</html>

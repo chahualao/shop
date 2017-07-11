@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>瑞和家商城</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/vendor/mui/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/rehoming.css"/>
+</head>
+<body style="background-color: #FBFBFB;">
+    <header class="mui-bar mui-bar-nav pub-head">	<!--头部导航-->
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left pub-head-back"></a>
+        <h1 class="mui-title">管理收货地址</h1>
+        <a class="mui-pull-right pub-head-more" id="show_more"></a>        	
+    <!--顶部右边more下拉菜单-->
+	<include file="Public/right_top_menu"/>
+    </header>
+    <div style="margin-top: 54px;"></div>
+    <volist name="lists" id="list">
+    <div class="my_pub-address">	
+    	<div class="my_pub-address-top">
+    		<span class="my_pub-address-top-l">{$list.consignee}</span>
+    		<span class="my_pub-address-top-r">{$list.mobile}</span>
+    	</div>
+    	<div class="my_pub-address-mid">
+    		{$region_list[$list['province']]['name']}，{$region_list[$list['city']]['name']}，{$region_list[$list['district']]['name']}，{$list.address}
+    	</div>	
+    	<div class="my_pub-address-foot">
+    		<div class="my_pub-address-foot-l">
+    		    <label>
+    		    	<input name="address" type="radio" onclick="setDefault({$list.address_id})" <if condition="$list[is_default] eq 1"> checked><i>√</i><span>默认地址</span><else/>><i>√</i><span>设为默认</span></if>
+    		    </label>    		    
+    		</div>
+    		<div class="my_pub-address-foot-r">
+    		    <a href="{:U('/Mobile/User/edit_address',array('id'=>$list[address_id],'source'=>$_GET['source']))}">编辑</a>
+    		    <a class="addressDel" href="javascript:;" onclick="delAddress({$list.address_id});">删除</a>    		    
+    		</div>
+    	</div>
+    </div>
+    </volist>
+
+    <a href="{:U('/Mobile/User/add_address',array('source'=>$_GET['source']))}">
+    	<input type="button" class="btn_black_center btn_address" value="添加新地址" />
+    </a>
+    
+    <script src="__MOBILE_STATIC__/vendor/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__MOBILE_STATIC__/vendor/jquery/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__MOBILE_STATIC__/mobile/js/public.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    mui.init()    
+   //删除地址
+   function delAddress(id){
+        mui.confirm('确定要删除该地址吗？','亲',['取消','确认'],function (e) {
+                
+                if(e.index==1){
+                    location.href="{:U('Mobile/User/del_address')}?id="+id;
+                }
+            },'div')
+   }
+   //设置为默认地址
+   function setDefault(id){
+    var a =$("input[name='address']").index(this);
+    $("input[name='address']").removeAttr('checked','checked');
+    $(this).attr('checked','checked');
+    $("label").find("span").html("设为默认");   
+    $("label").eq(a).find("span").html("默认地址");
+
+    location.href = "{:U('Mobile/User/set_default')}?id="+id;
+   }
+   
+    
+    </script>
+</body>
+</html>

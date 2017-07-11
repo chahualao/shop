@@ -1,0 +1,31 @@
+<if condition="$maybeyoulike neq '' ">
+	<foreach name="maybeyoulike" item="v" key="k" >
+	<div class="recommend-content">
+		<div class="swiper-container2">
+	       <div class="swiper-wrapper">
+	        <php>
+	            $v_g_id = $v['goods_id'];
+	        	$imglist = M('GoodsImages')->where("goods_id = '$v_g_id' ")->limit(3)->select();
+	        	
+	        </php>
+	        <foreach name="imglist" item="vo" key="key" >
+	           <div class="swiper-slide">
+	            	<a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v_g_id))}"><img src="{$vo.image_url}" ></a>
+	            </div>
+	        </foreach>    
+	        </div>
+	        <!-- Add Pagination -->
+	        <div class="swiper-pagination"></div>
+	    </div>
+	   	<div class="describe">
+			<p class="describe-title">{$v.goods_name}</p>
+			<p class="describe-content">{$v.goods_remark}</p>
+			<div class="describe-price-out">
+				<p class="describe-price">￥{$v.shop_price}</p>
+				<a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v['goods_id']))}"><div class="shop-buy">购买</div></a>
+				<div class="shop-cart" onclick="AjaxAddCart({$v.goods_id},1,0);">加入购物车</div>
+			</div>
+		</div>
+	</div>
+	</foreach>
+</if>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>个人中心-我的钱包</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/vendor/mui/mui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/rehoming.css"/>
+</head>
+<body style="background-color: #FBFBFB;">
+	<header class="mui-bar mui-bar-nav pub-head">	<!--头部导航-->
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left pub-head-back"></a>
+        <h1 class="mui-title">资金管理</h1>
+        <a class="mui-pull-right pub-head-more" id="show_more"></a>        	
+    <!--顶部右边more下拉菜单-->
+	<include file="Public/right_top_menu" />
+   	</header>   <!--头部导航结束--> 
+   	
+  
+   	
+  	<div class="my_pub-white-box1">
+		<ul class="itemtab-menu2">
+			<li><a href="{:U('Mobile/User/account',array('cattype'=>'chongzhi'))}" class="a1 <if condition="$_GET[cattype] eq ''">anav-active</if> <if condition="$_GET[cattype] eq 'chongzhi'">anav-active</if>">账户余额</a></li>
+			<li><a href="{:U('Mobile/User/account',array('cattype'=>'daikuan'))}" class="a2 <if condition="$_GET[cattype] eq 'daikuan'">anav-active</if>">贷款余额</a></li>
+		</ul>
+		<div class="money-info">
+			<!--根据类型提取-->
+	   		<div class="money-info-loan" style="display: block">
+	   			账户余额<span id="account-balance" class="balance">{$user['user_money']}元</span>
+	   		</div>
+   		</div>
+   	</div>
+   	
+   	
+   	
+	<ul class="consumerinfobox">
+		<foreach name="account_log" item="item" key="k">
+		<a class="a-purseone">
+			<li class="consumerone account-list" style="display: block;">
+				<div class="litop">
+					<span>金额:</span><span id="consumer-money" style="color: #e41735;">{$item.user_money}</span>
+					<img src="__MOBILE_STATIC__/mobile/images/icoright.png" style="width: 20px; float: right;"/>
+				</div>
+				<p id="consumer-datatime">{$item.change_time|date='Y-m-d H:i:s',###}</p>
+				<p class="consumer-info">				
+					账户余额支付:<span id="consumer-info">{$item.desc}</span>				
+				</p>
+			</li>
+		</a>
+		</foreach>
+	</ul>
+	
+	<div class="btnbox2" style="display: block">
+		<input type="button" name="" id="txbtn" value="提现" />
+		<input type="button" name="" id="czbtn" value="充值" />
+	</div>
+   	
+   	 <div class="gotop">
+   		<img src="__MOBILE_STATIC__/mobile/images/gotop.png"/>
+   	</div>
+   	
+   	<script src="__MOBILE_STATIC__/vendor/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>    
+    <script src="__MOBILE_STATIC__/vendor/jquery/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__MOBILE_STATIC__/mobile/js/public.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    	mui.init();/*mui框架初始化*/
+   
+	$(function(){
+	  
+	   $(window).scroll(function (){			
+			var b = $(window).scrollTop();
+			if(b>0){
+				$(".gotop").stop().fadeIn('fast');
+			}
+			else{
+				$(".gotop").stop().fadeOut('fast');
+			}   	
+	   })
+
+	   $(".gotop").click(function(){
+	   		$('html,body').animate({scrollTop: '0px'},400); 
+	   })
+	   
+	})
+   
+   </script>
+	</body>
+</html>
