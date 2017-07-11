@@ -7,6 +7,84 @@
     <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/public.css"/>
     <link rel="stylesheet" type="text/css" href="__MOBILE_STATIC__/mobile/css/rehoming.css"/>
     <link rel="stylesheet" href="__MOBILE_STATIC__/mobile/css/coupon.css" />
+    <style type="text/css">
+    	.my_couponHead{
+    		font-size: 12px;
+    		border-bottom: 1px solid #eee;
+			position: relative;
+    		top: 54px;
+		}
+    	.my_couponHead>a.action{color: #2a2a2a;}
+    	.a-action{    		
+    		position: absolute;
+    		bottom: 0;
+    		border-bottom: 2px solid #2a2a2a;
+    		-webkit-animation: scale 0.4s linear;
+		    -moz-animation: scale 0.4s linear;
+		    -ms-animation: scale 0.4s linear;
+		    -o-animation: scale 0.4s linear;
+		    animation: scale 0.4s linear;	
+    	}
+    	@keyframes scale{
+			15% {
+				transform: scale(1.1);
+			}
+			20% {
+				transform: scale(0.9);
+			}
+			30% {
+				transform: scale(1.1);
+			}
+			70% {
+				transform: scale(0.9);
+			}
+			85% {
+				transform: scale(1.1);
+			}			
+			100% {
+			    transform: scale(1);
+			}
+		}
+    	.coupon-content {padding-top: 54px;}
+    	.div_list_empty{
+    		position: fixed;
+		    top: 40%;
+		    left: 50%;
+		    -webkit-transform: translate(-50%,-50%));
+		    -moz-transform: translate(-50%,-50%));
+		    -o-transform: translate(-50%,-50%));
+		    transform: translate(-50%,-50%);
+		    text-align: center;
+		    color: #9c9c9c;		    
+    	}
+    	.div_list_empty>img{
+    		width: 154px;
+    		margin-bottom: 20px;
+    	}
+    	.animate {
+		    -webkit-animation: ripple 0.25s linear;
+		    -moz-animation: ripple 0.25s linear;
+		    -ms-animation: ripple 0.25s linear;
+		    -o-animation: ripple 0.25s linear;
+		    animation: ripple 0.25s linear;
+		}
+		@keyframes ripple{
+			100% {
+			    opacity: 0;
+			    transform: scale(2.5);
+			}
+		}		
+		.ink {
+		    display: block;
+		    position: absolute;
+		    background: rgba(205, 218, 102, 0.3);
+		    border-radius: 100%;
+		    -webkit-transform: scale(0);
+		    -moz-transform: scale(0);
+		    -o-transform: scale(0);
+		    transform: scale(0);
+		}    	
+    </style>
 </head>
 <body style="background-color: #FBFBFB;">
 	<header class="mui-bar mui-bar-nav pub-head">	<!--头部导航-->
@@ -22,19 +100,29 @@
    	        <a class="<if condition='$_GET[type] eq 0'>action</if>" href="{:U('User/coupon',array('type'=>0))}">未使用</a>
    	        <a class="<if condition='$_GET[type] eq 1'>action</if>" href="{:U('User/coupon',array('type'=>1))}">已使用</a>
    	        <a class="<if condition='$_GET[type] eq 2'>action</if>" href="{:U('User/coupon',array('type'=>2))}">已过期</a>
+   	        <div class="a-action"></div>
    	    </div>
    	    <div class="coupon-content">
    	        <div id="item1" >
    	            <ul class="mui-table-view">
-                  <volist name="coupon_list" id="coupon">
-   	                <li>
-   	                	<img src="__MOBILE_STATIC__/mobile/images/coupon.png" alt="" />
-   	                	<p class="coupon-money">{$coupon.money}</p>
-   	                	<p class="coupon-money4">VIP&nbsp;优惠劵</p>
-   	                	<p class="coupon-money2">满{$coupon.condition}可以使用</p>
-   	                	<p class="coupon-money3">有效期:<span>{$coupon.use_end_time|date='Y-m-d H:i:s',###}</span></p>
-   	                </li>
-                  </volist>
+   	            	<empty name="coupon_list">
+                  	<div class="div_list_empty">
+                  		<img src="__MOBILE_STATIC__/mobile/images/money_empty.png"/>
+                  		<p>没有可用的优惠卷</p>
+                  	</div>
+                  	<else/>	
+   	            	
+                  	<volist name="coupon_list" id="coupon">
+                  	
+	              		<li>
+	                		<img src="__MOBILE_STATIC__/mobile/images/coupon.png" alt="" />
+	   	                	<p class="coupon-money">{$coupon.money}</p>
+	   	                	<p class="coupon-money4">VIP&nbsp;优惠劵</p>
+	   	                	<p class="coupon-money2">满{$coupon.condition}可以使用</p>
+	   	                	<p class="coupon-money3">有效期:<span>{$coupon.use_end_time|date='Y-m-d H:i:s',###}</span></p>
+	   	                </li>
+                  	</volist>
+   	            	</empty>
    	            </ul>
    	        </div>
    	    </div>
@@ -46,7 +134,35 @@
     <script src="__MOBILE_STATIC__/mobile/js/public.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
     mui.init();/*mui框架初始化*/
+	
+	$(function(){
+		$(".a-action").width($("a.action").width()).css('left',$('a.action').position().left);
 
+		_wave(".my_couponHead a");
+	})
+	//obj及需要添加效果的对象
+	function _wave(obj){
+		var ink, d, x, y;
+		$(obj).click(function(e){
+			$(this).css({position:'relative',overflow:'hidden'});
+		    if($(this).find(".ink").length === 0){
+		        $(this).prepend("<span class='ink'></span>");
+		    }
+		         
+		    ink = $(this).find(".ink");
+		    ink.removeClass("animate");
+		     
+		    if(!ink.height() && !ink.width()){
+		        d = Math.max($(this).outerWidth(), $(this).outerHeight());
+		        ink.css({height: d, width: d});
+		    }
+		     
+		    x = e.pageX - $(this).offset().left - ink.width()/2;
+		    y = e.pageY - $(this).offset().top - ink.height()/2;
+		     
+		    ink.css({top: y+'px', left: x+'px'}).addClass("animate");
+		});
+	}
 	</script>
 	</body>
 </html>

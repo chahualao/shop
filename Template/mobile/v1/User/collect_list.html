@@ -114,7 +114,9 @@ height:100%;
 			   {
 				   location.href = "/index.php?m=Mobile&c=Cart&a=cart";   
 			   }
-			    cart_num = parseInt($('#tp_cart_info').html())+parseInt($('#number').val());
+			    // cart_num = parseInt($('#tp_cart_info').html())+parseInt($('#number').val());
+			    cart_num = parseInt($('#tp_cart_info').html());
+
 			    $('#tp_cart_info').html(cart_num)
 			    /*layer.open({
 			        content: '添加成功！',
@@ -161,7 +163,8 @@ height:100%;
 							//layer.open({content:data.msg, time:2});
 							return false;
 						}
-					    cart_num = parseInt($('#tp_cart_info').html())+parseInt(num);
+					    // cart_num = parseInt($('#tp_cart_info').html())+parseInt(num);
+					    cart_num = parseInt($('#tp_cart_info').html());
 					    $('#tp_cart_info').html(cart_num)
 					    mui.alert(data.msg,'提示','确认',function(){},'div');
 				    	//layer.open({content: data.msg,time: 1});

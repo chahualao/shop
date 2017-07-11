@@ -22,6 +22,73 @@
 		#goods-cash-sum{
 			margin-left: 10px;
 		}
+		.div_list_empty{
+    		position: fixed;
+		    top: 40%;
+		    left: 50%;
+		    -webkit-transform: translate(-50%,-50%));
+		    -moz-transform: translate(-50%,-50%));
+		    -o-transform: translate(-50%,-50%));
+		    transform: translate(-50%,-50%);
+		    text-align: center;
+		    color: #9c9c9c;		    
+    	}
+    	.div_list_empty>img{
+    		width: 154px;
+    		margin-bottom: 20px;
+    	}
+    	input[type=button]{margin-left: 5px;}
+    	.animate {
+		    -webkit-animation: ripple 0.25s linear;
+		    -moz-animation: ripple 0.25s linear;
+		    -ms-animation: ripple 0.25s linear;
+		    -o-animation: ripple 0.25s linear;
+		    animation: ripple 0.25s linear;
+		}
+		@keyframes ripple{
+			100% {
+			    opacity: 0;
+			    transform: scale(2.5);
+			}
+		}
+		
+		.ink {
+		    display: block;
+		    position: absolute;
+		    background: rgba(205, 218, 102, 0.3);
+		    border-radius: 100%;
+		    -webkit-transform: scale(0);
+		    -moz-transform: scale(0);
+		    -o-transform: scale(0);
+		    transform: scale(0);
+		}
+		.itemtab-menu{position: relative;}
+		.item-active{border: none;}
+		.li_active{
+			position: absolute;
+			bottom: 0;
+			text-align: center;
+			border-bottom: 2px solid #2a2a2a;	
+			-webkit-animation: scale 0.8s linear;
+		    -moz-animation: scale 0.8s linear;
+		    -ms-animation: scale 0.8s linear;
+		    -o-animation: scale 0.8s linear;
+		    animation: scale 0.8s linear;		
+		}		
+		@keyframes scale{
+			5% {
+				transform: scale(1.1);
+			}
+			10% {
+				transform: scale(0.9);
+			}
+			15% {
+				transform: scale(1.1);
+			}			
+			100% {
+			    transform: scale(1);
+			}
+		}
     </style>
 </head>
 <body style="background-color: #FBFBFB;">
@@ -35,53 +102,62 @@
    	<div class="my_pub-white-box">
 		<ul class="itemtab-menu">
 			<li class="<if condition="$_GET[type] eq ''">item-active</if>"><a href="{:U('/Mobile/User/order_list')}">全部</a></li>
-      <li class="<if condition="$_GET[type] eq 'WAITPAY'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITPAY'))}">待付款</a></li>
-      <li class="<if condition="$_GET[type] eq 'WAITSEND'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITSEND'))}">待发货</a></li>
-      <li class="<if condition="$_GET[type] eq 'WAITRECEIVE'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITRECEIVE'))}">待收货</a></li>
-      <li class="<if condition="$_GET[type] eq 'WAITCCOMMENT'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITCCOMMENT'))}">已完成</a></li>
+		    <li class="<if condition="$_GET[type] eq 'WAITPAY'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITPAY'))}">待付款</a></li>
+		    <li class="<if condition="$_GET[type] eq 'WAITSEND'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITSEND'))}">待发货</a></li>
+		    <li class="<if condition="$_GET[type] eq 'WAITRECEIVE'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITRECEIVE'))}">待收货</a></li>
+		    <li class="<if condition="$_GET[type] eq 'WAITCCOMMENT'">item-active</if>"><a href="{:U('/Mobile/User/order_list',array('type'=>'WAITCCOMMENT'))}">待评论</a></li>
+			<div class="li_active"></div>
 		</ul>			
    	</div>
     <form action="{:U('Mobile/order_list/ajax_order_list')}" name="filter_form" id="filter_form">
    	<ul class="itemlist" style="display: block;">
-      <volist name="lists" id="list">
-   		<li class="itemlist-one mui-clearfix">
-   			<div class="itemlist-bottom">
-   				<img src="__MOBILE_STATIC__/mobile/images/shop.png" style="width: 24px;" />
-   				<span class="goods-caption">订单号:</span>
-   				<strong class="goods-num" id="goods-num">{$list.order_sn}</strong>
-   				<img src="__MOBILE_STATIC__/mobile/images/icoright.png" style="width: 20px; float: right;"/>
-   			</div>
-          <a href="{:U('/Mobile/User/order_detail',array('id'=>$list['order_id']))}">
-        <volist name="list.goods_list" id="good">
-   			<div class="itemlist-bottom mui-clearfix">
-   				<div class="goods-img"><img src="{$good.goods_id|goods_thum_images=200,200}"/></div>
-   				<div class="itemlist-bottom-mid">
-   					<p class="goods-name">{$good.goods_name}</p>
-   					<p class="goods-color">{$good.spec_key_name}</p>
-   				</div>
-   				<div class="itemlist-bottom-r">
-   					<p class="goods-cash-now">¥<span id="goods-cash-now">{$good['member_goods_price']}</span></p>
-   					<p class="goods-cash-old">¥<span id="goods-cash-old">{$good['shop_price']}</span></p>
-   					<p class="goods-amount">×<span id="goods-amount">{$good['goods_num']}</span></p>
-   				</div>
-   			</div>
-        </volist></a>
-   			<div class="itemlist-bottom mui-clearfix">
-   				<p class="goods-sum">共<span id="goods-amount">{$list.goods_list|count}</span>件商品实付:<span id="goods-cash-sum">¥{$list['order_amount']}</span></p>
-   			</div>
-        <if condition="$list.cancel_btn eq 1">	
-   			<input type="button" class="goods-btn" onClick="cancel_order({$list.order_id})" value="取消订单" /></if>
-        <if condition="$list.pay_btn eq 1"><a href="{:U('Mobile/Cart/cart4',array('order_id'=>$list['order_id']))}">  
-        <input type="button" class="goods-btn" value="立即付款" /></a></if>
-        <if condition="$list.receive_btn eq 1"><a href="{:U('Mobile/User/order_confirm',array('id'=>$list['order_id']))}">  
-        <input type="button" class="goods-btn" value="确认收货" /></a></if>
-        <if condition="$list.comment_btn eq 1"><a href="{:U('/Mobile/User/comment')}">  
-        <input type="button" class="goods-btn" value="评价订单" /></a></if>
-        <if condition="$list.shipping_btn eq 1"><a href="{:U('User/express',array('order_id'=>$list['order_id']))}">  
-        <input type="button" class="goods-btn" value="查看物流" /></a></if>
-
-   		</li>
-      </volist>
+   		<empty name="lists">
+	   		<div class="div_list_empty">
+          		<img src="__MOBILE_STATIC__/mobile/images/order_empty.png"/>
+          		<p>您还没相关订单</p>
+          	</div>
+   		<else />
+   			<volist name="lists" id="list">
+		   		<li class="itemlist-one mui-clearfix">
+		   			<div class="itemlist-bottom">
+		   				<img src="__MOBILE_STATIC__/mobile/images/shop.png" style="width: 24px;" />
+		   				<span class="goods-caption">订单号:</span>
+		   				<strong class="goods-num" id="goods-num">{$list.order_sn}</strong>
+		   				<img src="__MOBILE_STATIC__/mobile/images/icoright.png" style="width: 20px; float: right;"/>
+		   			</div>
+		          <a href="{:U('/Mobile/User/order_detail',array('id'=>$list['order_id']))}">
+		        <volist name="list.goods_list" id="good">
+		   			<div class="itemlist-bottom mui-clearfix">
+		   				<div class="goods-img"><img src="{$good.goods_id|goods_thum_images=200,200}"/></div>
+		   				<div class="itemlist-bottom-mid">
+		   					<p class="goods-name">{$good.goods_name}</p>
+		   					<p class="goods-color">{$good.spec_key_name}</p>
+		   				</div>
+		   				<div class="itemlist-bottom-r">
+		   					<p class="goods-cash-now">¥<span id="goods-cash-now">{$good['member_goods_price']}</span></p>
+		   					<p class="goods-cash-old">¥<span id="goods-cash-old">{$good['shop_price']}</span></p>
+		   					<p class="goods-amount">×<span id="goods-amount">{$good['goods_num']}</span></p>
+		   				</div>
+		   			</div>
+		        </volist></a>
+		   			<div class="itemlist-bottom mui-clearfix">
+		   				<p class="goods-sum">共<span id="goods-amount">{$list.goods_list|count}</span>件商品实付:<span id="goods-cash-sum">¥{$list['order_amount']}</span></p>
+		   			</div>
+		        <if condition="$list.cancel_btn eq 1">	
+		   			<input type="button" class="goods-btn" onClick="cancel_order({$list.order_id})" value="取消订单" /></if>
+		        <if condition="$list.pay_btn eq 1"><a href="{:U('Mobile/Cart/cart4',array('order_id'=>$list['order_id']))}">  
+		        <input type="button" class="goods-btn" value="立即付款" /></a></if>
+		        <if condition="$list.receive_btn eq 1"><a href="{:U('Mobile/User/order_confirm',array('id'=>$list['order_id']))}">  
+		        <input type="button" class="goods-btn" value="确认收货" /></a></if>
+		        <if condition="$list.comment_btn eq 1"><a href="{:U('/Mobile/User/comment')}">  
+		        <input type="button" class="goods-btn" value="评价订单" /></a></if>
+		        <if condition="$list.shipping_btn eq 1"><a href="{:U('User/express',array('order_id'=>$list['order_id']))}">  
+		        <input type="button" class="goods-btn" value="查看物流" /></a></if>
+		
+		   		</li>
+	        </volist>
+   		</empty>
+      
    	</ul>
     <!--查询条件-->
     <input type="hidden" name="type" value="<?php echo $_GET['type'];?>" />
@@ -99,6 +175,39 @@
     }
   },'div')
   }
+  
+  $(function(){
+  	_wave(".itemtab-menu>li>a");
+	$(".li_active").width($(".itemtab-menu>li").width());
+	$(".li_active").css('left',$(".itemtab-menu>li.item-active").position().left);
+	$(window).resize(function(){
+		$(".li_active").width($(".itemtab-menu>li").width());
+		$(".li_active").css('left',$(".itemtab-menu>li.item-active").position().left);
+	})
+  })
+  //obj及需要添加效果的对象
+	function _wave(obj){
+		var ink, d, x, y;
+		$(obj).click(function(e){
+			$(this).css({position:'relative',overflow:'hidden'});
+		    if($(this).find(".ink").length === 0){
+		        $(this).prepend("<span class='ink'></span>");
+		    }
+		         
+		    ink = $(this).find(".ink");
+		    ink.removeClass("animate");
+		     
+		    if(!ink.height() && !ink.width()){
+		        d = Math.max($(this).outerWidth(), $(this).outerHeight());
+		        ink.css({height: d, width: d});
+		    }
+		     
+		    x = e.pageX - $(this).offset().left - ink.width()/2;
+		    y = e.pageY - $(this).offset().top - ink.height()/2;
+		     
+		    ink.css({top: y+'px', left: x+'px'}).addClass("animate");
+		});
+	}
 </script>
 </body>
 </html>
