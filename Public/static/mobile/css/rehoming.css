@@ -339,7 +339,7 @@ label{
 }
 
 #my_telverify-txt-tel{	/*盒子里文本输入框*/
-	width: 50%;
+	width: 40%;
 	height: 100%;
 	border: none;
 	padding: 16px 12px;

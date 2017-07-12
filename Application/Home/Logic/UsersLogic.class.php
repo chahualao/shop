@@ -693,7 +693,7 @@ class UsersLogic extends RelationModel
                 return $res;
             }else{
                 //发送验证码
-                $content = '【瑞和家】您的验证码:'.$code;
+                $content = '【瑞和家】您的验证码:'.$code.' 如非本人操作请忽略此信息';
                 $msg_result = sendSMS($sender,$content);
                 if($msg_result['message_resultcode'] == 0){
                   $send = true;  

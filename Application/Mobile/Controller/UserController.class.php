@@ -1281,4 +1281,17 @@ class UserController extends MobileBaseController
         }
         $this->display();
     }
+
+    /**
+     * 手机号是否存在
+     */
+    public function mobileIsExit(){
+        $mobile = I('mobile','wobuzai');
+        $user = M('users')->where("mobile = {$mobile}")->find();
+        if($user){
+            $this->ajaxReturn(array('code'=>0,'msg'=>'该手机号存在','data'=>array()),'json');
+        }else{
+            $this->ajaxReturn(array('code'=>1,'msg'=>'该手机号不存在','data'=>array()),'json');
+        }
+    }
 }

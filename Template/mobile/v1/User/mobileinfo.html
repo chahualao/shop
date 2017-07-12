@@ -17,7 +17,7 @@
 		<div class="my_pub-content-box-row mui-clearfix" id="first001">
 			<span class="my_pub-content-box-row-l">手机号</span>
 			<input name="mobile" type="tel" id="my_telverify-txt-tel" placeholder="需要绑定的手机号" maxlength="11"/>			
-			<input type="button" id="my_telverify-btn-yz" value="获取验证码" onclick="getVerify();" />
+			<input type="button" id="my_telverify-btn-yz" value="获取验证码" />
 		</div>
 		<div class="my_pub-content-box-row mui-clearfix mui-input-row">
 			<span class="my_pub-content-box-row-l">验证码</span>
@@ -33,7 +33,34 @@
     <script src="__MOBILE_STATIC__/vendor/layer/layer.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
     	mui.init(); 
-    	
+    	//验证手机是否存在
+    	$("#my_telverify-txt-tel").change(function(){
+    		var mobile = $(this).val();
+    		if (checkMobile(mobile)) {
+    			$.ajax({
+    				url:'/index.php?m=Mobile&c=User&a=mobileIsExit&t=' + Math.random(),
+    				type: 'post',
+	                dataType: 'json',
+	                data: {mobile:mobile},
+	                success:function(data){
+	                	if (data.code==0) {
+	                		mui.confirm('手机号码已经存在！','提示',['确认'],function (e) {
+	                
+				                if(e.index==0){
+				                   $("#my_telverify-txt-tel").focus();
+				                }
+				            },'div')
+				            $("#my_telverify-btn-yz").attr('onclick','');
+				            return false;
+	                	}else{
+	                		$("#my_telverify-btn-yz").attr('onclick',getVerify());
+	                	}
+	                }
+    			})
+    		}else{
+    			$("#my_telverify-btn-yz").attr('onclick','');
+    		}
+    	});
     	//获取验证码
     	function getVerify(){
     		var mobile = $('input[name=mobile]').val();
