@@ -156,7 +156,7 @@ class GoodsController extends MobileBaseController {
         C('TOKEN_ON',true);        
         $goodsLogic = new \Home\Logic\GoodsLogic();
         $goods_id = I("get.id");
-        $goods = M('Goods')->where("goods_id = $goods_id")->find();
+        $goods = M('Goods')->where("goods_id = $goods_id and is_on_sale = 1")->find();
         
 
         if(empty($goods)){

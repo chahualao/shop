@@ -22,6 +22,10 @@ class ActivityController extends MobileBaseController {
         C('TOKEN_ON',true);  
         $goodsLogic = new \Home\Logic\GoodsLogic();
         $goods_id = I("get.id",66);
+
+        if(empty($goods)){
+            $this->tp404('此商品不存在或者已下架');
+        }
         
         $group_buy_info = M('GroupBuy')->where("goods_id = $goods_id and ".time()." >= start_time and ".time()." <= end_time ")->find(); // 找出这个商品
         if(empty($group_buy_info)) 
