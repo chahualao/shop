@@ -84,13 +84,13 @@ class weixin extends RelationModel
     }
 
     function getJSAPI($order){
-    	if(stripos($order['order_sn'],'recharge') !== false){
-    		$go_url = U('Mobile/User/points',array('type'=>'recharge'));
-    		$back_url = U('Mobile/User/recharge',array('order_id'=>$order['order_id']));
-    	}else{
-    		$go_url = U('Mobile/User/order_detail',array('id'=>$order['order_id']));
-    		$back_url = U('Mobile/Cart/cart4',array('order_id'=>$order['order_id']));
-    	}
+        if(stripos($order['order_sn'],'recharge') !== false){
+            $go_url = U('Mobile/User/points',array('type'=>'recharge'));
+            $back_url = U('Mobile/User/recharge',array('order_id'=>$order['order_id']));
+        }else{
+            $go_url = U('Mobile/User/order_detail',array('id'=>$order['order_id']));
+            $back_url = U('Mobile/Cart/cart4',array('order_id'=>$order['order_id']));
+        }
         //①、获取用户openid
         $tools = new JsApiPay();
         //$openId = $tools->GetOpenid();
@@ -112,50 +112,42 @@ class weixin extends RelationModel
         //printf_info($order);exit;  
         $jsApiParameters = $tools->GetJsApiParameters($order2);
         $html = <<<EOF
-    <script src="__MOBILE_STATIC__/vendor/mui/mui.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-    //初始化mui
-    mui.init(); 
-	//调用微信JS api 支付
-	function jsApiCall()
-	{
-		WeixinJSBridge.invoke(
-			'getBrandWCPayRequest',$jsApiParameters,
-			function(res){
-				//WeixinJSBridge.log(res.err_msg);
-				 if(res.err_msg == "get_brand_wcpay_request:ok") {
-				    location.href='$go_url';
-				 }elseif(res.err_msg == "get_brand_wcpay_request:cancel"){
-                    mui.confirm('确定要取消支付？','提示',['确认','继续支付'],function (e) {
-                    
-                                if(e.index==0){
-                                   location.href='$back_url';
-                                }else{
-                                    callpay();
-                                }
-                            },'div')
-				 	
-				    
-				 }
-			}
-		);
-	}
+    <script type="text/javascript">
+    //调用微信JS api 支付
+    function jsApiCall()
+    {
+        WeixinJSBridge.invoke(
+            'getBrandWCPayRequest',$jsApiParameters,
+            function(res){
+                //WeixinJSBridge.log(res.err_msg);
+                 if(res.err_msg == "get_brand_wcpay_request:ok") {
+                    location.href='$go_url';
+                 }else if(res.err_msg == "get_brand_wcpay_request:cancel"){
+                    alert('已取消支付');
+                    location.href='$back_url';
+                 }else if(res.err_msg == "get_brand_wcpay_request:fail"){
+                    alert('支付失败');
+                    location.href='$back_url';
+                 }
+            }
+        );
+    }
 
-	function callpay()
-	{
-		if (typeof WeixinJSBridge == "undefined"){
-		    if( document.addEventListener ){
-		        document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
-		    }else if (document.attachEvent){
-		        document.attachEvent('WeixinJSBridgeReady', jsApiCall);
-		        document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
-		    }
-		}else{
-		    jsApiCall();
-		}
-	}
-	callpay();
-	</script>
+    function callpay()
+    {
+        if (typeof WeixinJSBridge == "undefined"){
+            if( document.addEventListener ){
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            }else if (document.attachEvent){
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }else{
+            jsApiCall();
+        }
+    }
+    callpay();
+    </script>
 EOF;
         
     return $html;
