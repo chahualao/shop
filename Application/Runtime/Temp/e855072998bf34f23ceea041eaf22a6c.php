@@ -1,3 +1,0 @@
-<?php
-//000000000000a:1:{i:0;a:20:{s:6:"rec_id";i:10;s:8:"order_id";i:10;s:8:"goods_id";i:503;s:10:"goods_name";s:84:"【新用户下单立返29.9元现金券】 现代简约陶瓷 满天星白色花器";s:8:"goods_sn";s:21:"揽花（单花瓶）";s:9:"goods_num";i:1;s:12:"market_price";s:5:"35.90";s:11:"goods_price";s:5:"26.91";s:10:"cost_price";s:5:"15.00";s:18:"member_goods_price";s:5:"26.91";s:13:"give_integral";i:0;s:8:"spec_key";s:0:"";s:13:"spec_key_name";s:0:"";s:8:"bar_code";s:0:"";s:10:"is_comment";i:0;s:9:"prom_type";i:3;s:7:"prom_id";i:2;s:7:"is_send";i:1;s:11:"delivery_id";i:14;s:3:"sku";s:0:"";}}
-?>

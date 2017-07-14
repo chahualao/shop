@@ -27,8 +27,9 @@ class CartLogic extends RelationModel
     function addCart($goods_id,$goods_num,$goods_spec,$session_id,$user_id = 0)
     {       
         
-        $goods = M('Goods')->where("goods_id = $goods_id")->find(); // 找出这个商品        
-        $specGoodsPriceList = M('SpecGoodsPrice')->where("goods_id = $goods_id")->getField("key,key_name,price,store_count,sku"); // 获取商品对应的规格价钱 库存 条码
+        $goods = M('Goods')->where("goods_id = $goods_id")->find(); // 找出这个商品
+        // 获取商品对应的规格价钱 库存 条码        
+        $specGoodsPriceList = M('SpecGoodsPrice')->where("goods_id = $goods_id")->getField("key,key_name,price,store_count,sku"); 
 
 		$where = " session_id = '$session_id' ";
         $user_id = $user_id ? $user_id : 0;
@@ -37,17 +38,27 @@ class CartLogic extends RelationModel
         $catr_count = M('Cart')->where($where)->count(); // 查找购物车商品总数量
         if($catr_count >= 20) 
             return array('status'=>-9,'msg'=>'购物车最多只能放20种商品','result'=>'');            
-        
-        if(!empty($specGoodsPriceList) && empty($goods_spec)) // 有商品规格 但是前台没有传递过来
-            return array('status'=>-1,'msg'=>'必须传递商品规格','result'=>'');                        
-        if($goods_num <= 0) 
-            return array('status'=>-2,'msg'=>'购买商品数量不能为0','result'=>'');            
-        if(empty($goods))
-            return array('status'=>-3,'msg'=>'购买商品不存在','result'=>'');            
-        if(($goods['store_count'] < $goods_num))
-            return array('status'=>-4,'msg'=>'商品库存不足','result'=>'');        
-        if($goods['prom_type'] > 0 && $user_id == 0)
+        // 如果有商品规格 但是前台没有传递过来
+        if(!empty($specGoodsPriceList) && empty($goods_spec)){
+            return array('status'=>-1,'msg'=>'必须传递商品规格','result'=>'');
+        }
+                                    
+        if($goods_num <= 0) {
+            return array('status'=>-2,'msg'=>'购买商品数量不能为0','result'=>'');
+        }
+                        
+        if(empty($goods)){
+             return array('status'=>-3,'msg'=>'购买商品不存在','result'=>''); 
+        }
+                      
+        if(($goods['store_count'] < $goods_num)){
+            return array('status'=>-4,'msg'=>'商品库存不足','result'=>'');
+        }
+                    
+        if($goods['prom_type'] > 0 && $user_id == 0){
             return array('status'=>-101,'msg'=>'购买活动商品必须先登录','result'=>'');
+        }
+            
         
         //限时抢购 不能超过购买数量        
         if($goods['prom_type'] == 1) 
@@ -62,35 +73,45 @@ class CartLogic extends RelationModel
                     return array('status'=>-4,'msg'=>"每人限购 {$flash_sale['buy_limit']}件 $error_msg",'result'=>'');
                 }                        
                 // 如果剩余数量 不足 限购数量, 就只能买剩余数量
-                if(($flash_sale['goods_num'] - $flash_sale['buy_num']) < $flash_sale['buy_limit'])
-                    return array('status'=>-4,'msg'=>"库存不够,你只能买".($flash_sale['goods_num'] - $flash_sale['buy_num'])."件了.",'result'=>'');                    
+                if(($flash_sale['goods_num'] - $flash_sale['buy_num']) < $flash_sale['buy_limit']){
+                    return array('status'=>-4,'msg'=>"库存不够,你只能买".($flash_sale['goods_num'] - $flash_sale['buy_num'])."件了.",'result'=>'');
+                }
+                                        
             }
-        }                
-        
-        foreach($goods_spec as $key => $val) // 处理商品规格
-            $spec_item[] = $val; // 所选择的规格项                            
-        if(!empty($spec_item)) // 有选择商品规格
-        {
-            sort($spec_item);
-            $spec_key = implode('_', $spec_item);
-            //一个商品有可能有多个规格组合，所以上面获取的specGoodsPriceList有可能是多条数据 此处加入条件key精确定位
-            $map = array('goods_id'=>$goods_id,'key'=>$spec_key);//查询条件
-            $specGoodsInfo = M('SpecGoodsPrice')->where($map)->find();
+        } 
+        //规格KEY
+        $spec_key = '';
+        //规格相应价格
+        $spec_price = '';
+        if(!empty($goods_spec)){
+            foreach($goods_spec as $key => $val){
+                $spec_item[] = $val; // 所选择的规格项
+            }
 
-            if($specGoodsInfo['store_count'] < $goods_num) 
-                return array('status'=>-4,'msg'=>'该规格商品库存不足','result'=>'');
-            $spec_price = $specGoodsInfo['price']; // 获取规格指定的价格
+            if(!empty($spec_item)) // 有选择商品规格
+            {
+                sort($spec_item);
+                $spec_key = implode('_', $spec_item);
+                //一个商品有可能有多个规格组合，所以上面获取的specGoodsPriceList有可能是多条数据 此处加入条件key精确定位
+                $map = array('goods_id'=>$goods_id,'key'=>$spec_key);//查询条件
+                $specGoodsInfo = M('SpecGoodsPrice')->where($map)->find();
+
+                if($specGoodsInfo['store_count'] < $goods_num) 
+                    return array('status'=>-4,'msg'=>'该规格商品库存不足','result'=>'');
+                $spec_price = $specGoodsInfo['price']; // 获取规格指定的价格
+            }
         }
-                
+
         $where = " goods_id = $goods_id and spec_key = '$spec_key' "; // 查询购物车是否已经存在这商品
-        if($user_id > 0)
+        if($user_id > 0){
             $where .= " and (session_id = '$session_id' or user_id = $user_id) ";
-        else
+        }
+        else{
             $where .= " and  session_id = '$session_id' ";
-        
+        }
+            
         $catr_goods = M('Cart')->where($where)->find(); // 查找购物车是否已经存在该商品
         $price = $spec_price ? $spec_price : $goods['shop_price']; // 如果商品规格没有指定价格则用商品原始价格
-        
         // 商品参与促销
         if($goods['prom_type'] > 0)
         {            
@@ -99,31 +120,33 @@ class CartLogic extends RelationModel
             $goods['prom_type'] = $prom['prom_type'];
             $goods['prom_id']   = $prom['prom_id'];
         }
-        
+        //要写入购物车的数据
         $data = array(                    
-                    'user_id'         => $user_id,   // 用户id
-                    'session_id'      => $session_id,   // sessionid
-                    'goods_id'        => $goods_id,   // 商品id
-                    'goods_sn'        => $goods['goods_sn'],   // 商品货号
-                    'goods_name'      => $goods['goods_name'],   // 商品名称
-                    'market_price'    => $goods['market_price'],   // 市场价
-                    'goods_price'     => $price,  // 购买价
-                    'member_goods_price' => $price,  // 会员折扣价 默认为 购买价
-                    'goods_num'       => $goods_num, // 购买数量
-                    'spec_key'        => "{$spec_key}", // 规格key
-                    'spec_key_name'   => "{$specGoodsPriceList[$spec_key]['key_name']}", // 规格 key_name
-                    'sku'        => "{$specGoodsPriceList[$spec_key]['sku']}", // 商品条形码                    
-                    'add_time'        => time(), // 加入购物车时间
-                    'prom_type'       => $goods['prom_type'],   // 0 普通订单,1 限时抢购, 2 团购 , 3 促销优惠
-                    'prom_id'         => $goods['prom_id'],   // 活动id                            
-        );                
+            'user_id'         => $user_id,   // 用户id
+            'session_id'      => $session_id,   // sessionid
+            'goods_id'        => $goods_id,   // 商品id
+            'goods_sn'        => $goods['goods_sn'],   // 商品货号
+            'goods_name'      => $goods['goods_name'],   // 商品名称
+            'market_price'    => $goods['market_price'],   // 市场价
+            'goods_price'     => $price,  // 购买价
+            'member_goods_price' => $price,  // 会员折扣价 默认为 购买价
+            'goods_num'       => $goods_num, // 购买数量
+            'spec_key'        => "{$spec_key}", // 规格key
+            'spec_key_name'   => "{$specGoodsPriceList[$spec_key]['key_name']}", // 规格 key_name
+            'sku'        => "{$specGoodsPriceList[$spec_key]['sku']}", // 商品条形码                    
+            'add_time'        => time(), // 加入购物车时间
+            'prom_type'       => $goods['prom_type'],   // 0 普通订单,1 限时抢购, 2 团购 , 3 促销优惠
+            'prom_id'         => $goods['prom_id'],   // 活动id                            
+        );
 
-       // 如果商品购物车已经存在 
+        // 如果商品购物车已经存在 
        if($catr_goods) 
        {          
            // 如果购物车的已有数量加上 这次要购买的数量  大于  库存输  则不再增加数量
-            if(($catr_goods['goods_num'] + $goods_num) > $goods['store_count'])
+            if(($catr_goods['goods_num'] + $goods_num) > $goods['store_count']){
                 $goods_num = 0;
+            }
+
             $result = M('Cart')->where("id =".$catr_goods[id])->save(  array("goods_num"=> ($catr_goods['goods_num'] + $goods_num)) ); // 数量相加        
             $cart_count = cart_goods_num($user_id,$session_id); // 查找购物车数量 
             setcookie('cn',$cart_count,null,'/');
@@ -131,13 +154,12 @@ class CartLogic extends RelationModel
        }
        else
        {         
-             $insert_id = M('Cart')->add($data);
-             $cart_count = cart_goods_num($user_id,$session_id); // 查找购物车数量
-             setcookie('cn',$cart_count,null,'/');
-             return array('status'=>1,'msg'=>'成功加入购物车','result'=>$cart_count);
-       }     
-            $cart_count = cart_goods_num($user_id,$session_id); // 查找购物车数量 
-            return array('status'=>-5,'msg'=>'加入购物车失败','result'=>$cart_count);        
+            $insert_id = M('Cart')->add($data);
+            $cart_count = cart_goods_num($user_id,$session_id); // 查找购物车数量
+            setcookie('cn',$cart_count,null,'/');
+            return array('status'=>1,'msg'=>'成功加入购物车','result'=>$cart_count);
+       }
+                 
     }
     
     /**
