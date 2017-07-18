@@ -16,6 +16,69 @@
 		transform: translate(-50%,-50%);
 		line-height: 21px;
 		}
+		.page-shopping .item-list .pic{
+			width: 80px;
+			height: 80px;
+		}
+		.list-NaN{
+		    border-top: 1px solid #ebebeb;		    
+		    background: #f4f4f4;
+		    overflow: auto;
+	        padding: 16px 10px;
+		}
+		.list-NaN-l-tag{
+			display: inline-block;
+		    padding: 5px 4px;
+		    line-height: 1;
+		    font-size: 12px;
+		    border-radius: 5px;
+		    background: #ddd;
+		    color: #4a4a4a;			
+		}
+		.list-NaN-l-img{
+		    display: inline-block;
+		    padding: 2px;
+		    border: 1px solid #e0e0e0;
+		    width: 60px;
+		}
+		.list-NaN-l-img>a{display: inline-block;}
+		.list-NaN-l-img>a>img{width: 100%;}
+		.list-NaN-l,.list-NaN-m{float: left;}
+		.list-NaN-r{float: right;padding-top: 15px;}
+		.list-NaN-m {
+			width: 38%;			
+			margin-left: 20px;
+		}
+		.list-NaN-m-name{
+			color: #9c9c9c;
+			line-height: 1.5;
+			font-size: 12px;
+			overflow:hidden;
+			text-overflow:ellipsis;
+			display:-webkit-box;
+			-webkit-box-orient:vertical;
+			-webkit-line-clamp:2; 
+		}
+		.list-NaN-m-err{
+			color: #4a4a4a;
+		    font-size: 12px;
+		    font-weight: bold;
+		    margin-top: 4px;
+		}
+		.page-shopping .item-list .delete{
+			position: static !important;
+		    float: right;		    
+		    margin-right: 10px;
+		    margin-top: 15px;
+		    width: auto !important;
+		    height: auto !important;
+		}
+		.page-shopping .item-list .price span{
+			font-size: 14px !important;
+		}
+		.page-shopping .item-list .price span.mar_price{
+			font-size: 12px !important;
+		}
 </style>
  <foreach name="cartList" item="v" key="k" >
     <div  class="block" style="margin-top:0px;">
@@ -54,13 +117,13 @@
            </div>
            <div style=" position:absolute; right:0px; top:20px; width:100px; height:98px;">
              <div class="price">
-               <span class="mar_price">￥{$v.market_price}元</span>
-               <br>
                <span>￥{$v.member_goods_price}元</span>
+               <br>               
+               <span class="mar_price">￥{$v.market_price}元</span>
               </div>
              <div class="delete">
                <a href="javascript:void(0);" onclick="del_cart_goods({$v.id})">
-                 <div class="icon-shanchu"></div>
+                 <img src="__MOBILE_STATIC__/mobile/images/del-1.png"/ width="14">
                </a>
              </div>
            </div>
@@ -71,6 +134,34 @@
      </div>
     </div>
 </foreach>
+
+<!--失效商品模块-->
+<div class="list-NaN">
+	<!--失效商品模块左边-->
+	<div class="list-NaN-l">
+		<!--失效灰色标签-->
+		<div class="list-NaN-l-tag">失效</div>
+		<!--失效商品图片-->
+		<div class="list-NaN-l-img">
+			<a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=200,200}"></a>
+		</div>
+	</div>
+	<!--失效商品模块中-->
+	<div class="list-NaN-m">
+		<div class="list-NaN-m-name">
+		   <span>{$v.goods_name}</span>
+		</div>
+		<div class="list-NaN-m-err">商品无库存或下架</div>
+	</div>
+	<!--失效商品模块右-->
+	<div class="list-NaN-r">
+		<a href="javascript:void(0);" onclick="del_cart_goods({$v.id})">
+            <img src="__MOBILE_STATIC__/mobile/images/del-1.png"/ width="16">
+       </a>
+	</div>	
+</div>
+
+
 <if condition="empty($cartList)">         
 <div class="screen-wrap fullscreen login">
 <section id="cart-content">
