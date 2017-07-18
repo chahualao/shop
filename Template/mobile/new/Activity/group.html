@@ -528,13 +528,13 @@
 			}
 
 			$(document).ready(function() {
-				var cart_cn = getCookie('cn');
+				var cart_cn = getCookie('newcn');
 				if (cart_cn == '') {
 					$.ajax({
 						type: "GET",
 						url: "/index.php?m=Home&c=Cart&a=header_cart_list", //+tab,
 						success: function(data) {
-							cart_cn = getCookie('cn');
+							cart_cn = getCookie('newcn');
 						}
 					});
 				}

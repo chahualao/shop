@@ -203,8 +203,11 @@ class CartLogic extends RelationModel
         	$total_price += $val['goods_num'] * $val['member_goods_price'];
         }
 
-        $total_price = array('total_fee' =>$total_price , 'cut_fee' => $cut_fee,'num'=> $anum,); // 总计        
+        $total_price = array('total_fee' =>$total_price , 'cut_fee' => $cut_fee,'num'=> $anum,); // 总计
+        //新加的统计购物车方法 同一个商品同一种规格算一个，同一个商品不同规格算多个
+        $cart_count =  M('Cart')->where($where)->group('spec_key')->count();        
         setcookie('cn',$anum,null,'/');
+        setcookie('newcn',$cart_count,null,'/');
         if($mode == 1) return array('cartList' => $cartList, 'total_price' => $total_price);
         return array('status'=>1,'msg'=>'','result'=>array('cartList' =>$cartList, 'total_price' => $total_price));
     }    

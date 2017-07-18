@@ -27,8 +27,17 @@ function AjaxAddCart(goods_id,num,to_catr)
 			   {
 				   location.href = "/index.php?m=Mobile&c=Cart&a=cart";   
 			   }
-			    cart_num = parseInt($('#tp_cart_info').html())+parseInt($('#number').val());
-			    $('#tp_cart_info').html(cart_num)
+			   //重新获取购物车数量
+			   $.ajax({
+						type: "GET",
+						url: "/index.php?m=Home&c=Cart&a=header_cart_list", //+tab,
+						success: function(data) {
+							cart_cn = Cookies.get('newcn');
+							$('#tp_cart_info').html(cart_cn)
+						}
+					});
+			    //cart_num = parseInt($('#tp_cart_info').html())+parseInt($('#number').val());
+			    //$('#tp_cart_info').html(cart_num)
 			    /*layer.open({
 			        content: '添加成功！',
 			        btn: ['再逛逛', '去购物车'],
@@ -74,8 +83,15 @@ function AjaxAddCart(goods_id,num,to_catr)
 							//layer.open({content:data.msg, time:2});
 							return false;
 						}
-					    cart_num = parseInt($('#tp_cart_info').html())+parseInt(num);
-					    $('#tp_cart_info').html(cart_num)
+					     //重新获取购物车数量
+					   $.ajax({
+								type: "GET",
+								url: "/index.php?m=Home&c=Cart&a=header_cart_list", //+tab,
+								success: function(data) {
+									cart_cn = Cookies.get('newcn');
+									$('#tp_cart_info').html(cart_cn)
+								}
+							});
 					    mui.alert(data.msg,'提示','确认',function(){},'div');
 				    	//layer.open({content: data.msg,time: 1});
 						return false;

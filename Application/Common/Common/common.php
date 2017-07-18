@@ -491,7 +491,9 @@ function cart_goods_num($user_id = 0,$session_id = '')
     $where = " session_id = '$session_id' ";
     $user_id && $where .= " or user_id = $user_id ";
     // 查找购物车数量
-    $cart_count =  M('Cart')->where($where)->sum('goods_num');
+    //$cart_count =  M('Cart')->where($where)->sum('goods_num');
+    $cart_count =  M('Cart')->where($where)->group('spec_key')->count();
+    
     $cart_count = $cart_count ? $cart_count : 0;
     return $cart_count;
 }

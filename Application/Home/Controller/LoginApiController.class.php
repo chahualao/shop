@@ -43,6 +43,7 @@ class LoginApiController extends BaseController {
         $nickname = empty($data['result']['nickname']) ? '第三方用户' : $data['result']['nickname'];
         setcookie('uname',urlencode($nickname),null,'/');
         setcookie('cn',0,time()-3600,'/');
+        
         // 登录后将购物车的商品的 user_id 改为当前登录的id            
         M('cart')->where("session_id = '{$this->session_id}'")->save(array('user_id'=>$data['result']['user_id']));
         if(isMobile())
