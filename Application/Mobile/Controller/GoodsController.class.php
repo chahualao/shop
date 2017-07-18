@@ -160,7 +160,7 @@ class GoodsController extends MobileBaseController {
         
 
         if(empty($goods)){
-        	$this->tp404('此商品不存在或者已下架');
+        	$this->error('此商品不存在或者已下架');
         }
 
         //记录商品的分类ID 用来做猜你喜欢
