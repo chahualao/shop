@@ -176,7 +176,7 @@ class CartLogic extends RelationModel
         //if($selected != NULL)
         //    $where = " selected = $selected "; // 购物车选中状态
         
-        if($user[user_id])// 如果用户已经登录则按照用户id查询
+        if($user['user_id'])// 如果用户已经登录则按照用户id查询
         {
              $where .= " and user_id = $user[user_id] ";
              // 给用户计算会员价 登录前后不一样             
@@ -186,7 +186,8 @@ class CartLogic extends RelationModel
             $where .= " and session_id = '$session_id'";
             $user[user_id] = 0;
         }
-                                
+
+                       
         $cartList = M('Cart')->where($where)->select();  // 获取购物车商品 
         $anum = $total_price =  $cut_fee = 0;
 
@@ -201,6 +202,8 @@ class CartLogic extends RelationModel
                 
                 $cut_fee += $val['goods_num'] * $val['market_price'] - $val['goods_num'] * $val['member_goods_price'];                
         	$total_price += $val['goods_num'] * $val['member_goods_price'];
+            //客户半年后去看自己购物车，这个商品是否失效
+            $cartList[$k]['is_on_sale'] = is_on_sale($val['goods_id']);
         }
 
         $total_price = array('total_fee' =>$total_price , 'cut_fee' => $cut_fee,'num'=> $anum,); // 总计

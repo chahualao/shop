@@ -80,87 +80,7 @@
 			font-size: 12px !important;
 		}
 </style>
- <foreach name="cartList" item="v" key="k" >
-    <div  class="block" style="margin-top:0px;">
-      <div class="shop_title" >
-        <div class="fl"><a class="shopLink eclipse" href="javascript:void(0);">供货商：{$tpshop_config['shop_info_store_name']}</a>
-        <input type="hidden" name="supplierid" id="supplierid" value="7"></div>
-      </div>   
-      <div class="item-list">
-       <div class="item">
-         <div class="inner">
-           <div style="width:60%; float:left; height:98px;">
-             <div class="check-wrapper">
-              <span  class="cart-checkbox  <if condition="$v[selected] eq 1" >checked</if>">
-                 <input type="checkbox" autocomplete="off" name="cart_select[{$v.id}]" <if condition="$v[selected] eq 1" >checked="checked"</if>  style="display:none;" value="1" onclick="ajax_cart_list();">
-              </span>
-             </div>
-             <div  class="pic">
-                 <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=200,200}"></a>
-             </div>
-             
-             <div class="name">
-               <span>  {$v.goods_name} </span>
-             </div>
-             <div class="attr">
-                 <span>{$v.spec_key_name}</span>
-             </div>
-             <div class="num">
-                 <div class="xm-input-number">
-                   <div class="act_wrap">
-                        <a href="javascript:;" onclick="switch_num(-1,{$v.id},{$v.store_count});" id="jiannum6" class="input-sub active"></a>
-                     	<input id="goods_num[{$v.id}]" type="text" onKeyDown='if(event.keyCode == 13) event.returnValue = false' name="goods_num[{$v.id}]"  value="{$v.goods_num}"  class="input-num"  onblur="ajax_cart_list()"/>
-                     	<a href="javascript:;" onclick="switch_num(1,{$v.id},{$v.store_count});"  class="input-add active"></a>
-                     </div>
-                  </div>                 
-             </div>
-           </div>
-           <div style=" position:absolute; right:0px; top:20px; width:100px; height:98px;">
-             <div class="price">
-               <span>￥{$v.member_goods_price}元</span>
-               <br>               
-               <span class="mar_price">￥{$v.market_price}元</span>
-              </div>
-             <div class="delete">
-               <a href="javascript:void(0);" onclick="del_cart_goods({$v.id})">
-                 <img src="__MOBILE_STATIC__/mobile/images/del-1.png"/ width="14">
-               </a>
-             </div>
-           </div>
-           <div style="height:0px; line-height:0px; clear:both;"></div>
-         </div>
-         <div class="append"></div>
-       </div>
-     </div>
-    </div>
-</foreach>
-
-<!--失效商品模块-->
-<div class="list-NaN">
-	<!--失效商品模块左边-->
-	<div class="list-NaN-l">
-		<!--失效灰色标签-->
-		<div class="list-NaN-l-tag">失效</div>
-		<!--失效商品图片-->
-		<div class="list-NaN-l-img">
-			<a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=200,200}"></a>
-		</div>
-	</div>
-	<!--失效商品模块中-->
-	<div class="list-NaN-m">
-		<div class="list-NaN-m-name">
-		   <span>{$v.goods_name}</span>
-		</div>
-		<div class="list-NaN-m-err">商品无库存或下架</div>
-	</div>
-	<!--失效商品模块右-->
-	<div class="list-NaN-r">
-		<a href="javascript:void(0);" onclick="del_cart_goods({$v.id})">
-            <img src="__MOBILE_STATIC__/mobile/images/del-1.png"/ width="14">
-       </a>
-	</div>	
-</div>
-
+ 
 
 <if condition="empty($cartList)">         
 <div class="screen-wrap fullscreen login">
@@ -178,19 +98,101 @@
 <section class="f_block" id="choose" style="height:0px;"></section> 
 </div>
  <else/>
+ 	<foreach name="cartList" item="v" key="k" >
+	 	<if condition="$v.is_on_sale eq 1">
+	    <div  class="block" style="margin-top:0px;">
+	      <div class="shop_title" >
+	        <div class="fl"><a class="shopLink eclipse" href="javascript:void(0);">供货商：{$tpshop_config['shop_info_store_name']}</a>
+	        <input type="hidden" name="supplierid" id="supplierid" value="7"></div>
+	      </div>   
+	      <div class="item-list">
+	       <div class="item">
+	         <div class="inner">
+	           <div style="width:60%; float:left; height:98px;">
+	             <div class="check-wrapper">
+	              <span  class="cart-checkbox  <if condition="$v[selected] eq 1" >checked</if>">
+	                 <input type="checkbox" autocomplete="off" name="cart_select[{$v.id}]" <if condition="$v[selected] eq 1" >checked="checked"</if>  style="display:none;" value="1" onclick="ajax_cart_list();">
+	              </span>
+	             </div>
+	             <div  class="pic">
+	                 <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=200,200}"></a>
+	             </div>
+	             
+	             <div class="name">
+	               <span>  {$v.goods_name} </span>
+	             </div>
+	             <div class="attr">
+	                 <span>{$v.spec_key_name}</span>
+	             </div>
+	             <div class="num">
+	                 <div class="xm-input-number">
+	                   <div class="act_wrap">
+	                        <a href="javascript:;" onclick="switch_num(-1,{$v.id},{$v.store_count});" id="jiannum6" class="input-sub active"></a>
+	                     	<input id="goods_num[{$v.id}]" type="text" onKeyDown='if(event.keyCode == 13) event.returnValue = false' name="goods_num[{$v.id}]"  value="{$v.goods_num}"  class="input-num"  onblur="ajax_cart_list()"/>
+	                     	<a href="javascript:;" onclick="switch_num(1,{$v.id},{$v.store_count});"  class="input-add active"></a>
+	                     </div>
+	                  </div>                 
+	             </div>
+	           </div>
+	           <div style=" position:absolute; right:0px; top:20px; width:100px; height:98px;">
+	             <div class="price">
+	               <span>￥{$v.member_goods_price}元</span>
+	               <br>               
+	               <span class="mar_price">￥{$v.market_price}元</span>
+	              </div>
+	             <div class="delete">
+	               <a href="javascript:void(0);" onclick="del_cart_goods({$v.id})">
+	                 <img src="__MOBILE_STATIC__/mobile/images/del-1.png"/ width="14">
+	               </a>
+	             </div>
+	           </div>
+	           <div style="height:0px; line-height:0px; clear:both;"></div>
+	         </div>
+	         <div class="append"></div>
+	       </div>
+	     </div>
+	    </div>
+	    <else />
+	    <!--失效商品模块-->
+		<div class="list-NaN">
+			<!--失效商品模块左边-->
+			<div class="list-NaN-l">
+				<!--失效灰色标签-->
+				<div class="list-NaN-l-tag">失效</div>
+				<!--失效商品图片-->
+				<div class="list-NaN-l-img">
+					<a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img src="{$v.goods_id|goods_thum_images=200,200}"></a>
+				</div>
+			</div>
+			<!--失效商品模块中-->
+			<div class="list-NaN-m">
+				<div class="list-NaN-m-name">
+				   <span>{$v.goods_name}</span>
+				</div>
+				<div class="list-NaN-m-err">商品无库存或下架</div>
+			</div>
+			<!--失效商品模块右-->
+			<div class="list-NaN-r">
+				<a href="javascript:void(0);" onclick="del_cart_goods({$v.id})">
+		            <img src="__MOBILE_STATIC__/mobile/images/del-1.png"/ width="14">
+		       </a>
+			</div>	
+		</div>
+	    </if>
+	</foreach>
 	 <div class="bottom-panel">
 	    <div class="quanxuan">
-	     <div class="check-wrapper">
-	        <span class="cart-checkbox" onclick="chkAll_onclick()"></span><span class="cart-checktext">全选</span>
-	     </div>
+	      	<div class="check-wrapper">
+	        	<span class="cart-checkbox" onclick="chkAll_onclick()"></span><span class="cart-checktext">全选</span>
+	      	</div>
 	   </div>
 	   <div class="info">
-	     <span class="hot" id="cart_amount_desc"><em>总计：</em>￥{$total_price.total_fee}元</span>
-	     <br>
-	     <span class="hot_text">不含运费</span>
+	     	<span class="hot" id="cart_amount_desc"><em>总计：</em>￥{$total_price.total_fee}元</span>
+	     	<br>
+	     	<span class="hot_text">不含运费</span>
 	   </div>
 	   <div class="right">
-	     <input type="button" href="javascript:void();"  onclick="return selcart_submit();" class="xm-button " value="去结算"></div>
+	     	<input type="button" href="javascript:void();"  onclick="return selcart_submit();" class="xm-button " value="去结算"></div>
 	</div>
 </if> 
 

@@ -248,6 +248,7 @@ class CartController extends MobileBaseController {
         $where = " session_id = '$this->session_id' "; // 默认按照 session_id 查询
         $this->user_id && $where = " user_id = ".$this->user_id; // 如果这个用户已经等了则按照用户id查询
 
+        
         $cartList = M('Cart')->where($where)->getField("id,goods_num,selected,prom_type,prom_id"); 
 
         if($post_goods_num)

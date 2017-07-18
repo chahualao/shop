@@ -1166,4 +1166,10 @@ function get_goods_category_tree(){
 	return $result;
 }
 
+//商品是否失效 
+function is_on_sale($goods_id){
+    $goods = M('goods')->where('goods_id='.$goods_id)->getField('is_on_sale');
+    return $goods;
+}
+
 
