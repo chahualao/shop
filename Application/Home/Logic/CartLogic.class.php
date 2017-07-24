@@ -190,10 +190,11 @@ class CartLogic extends RelationModel
                        
         $cartList = M('Cart')->where($where)->select();  // 获取购物车商品 
         $anum = $total_price =  $cut_fee = 0;
-
-        foreach ($cartList as $k=>$val){
+        foreach ($cartList as $k=>&$val){
         	$cartList[$k]['goods_fee'] = $val['goods_num'] * $val['member_goods_price'];
-        	$cartList[$k]['store_count']  = getGoodNum($val['goods_id'],$val['spec_key']); // 最多可购买的库存数量        	
+        	$cartList[$k]['store_count']  = getGoodNum($val['goods_id'],$val['spec_key']); // 最多可购买的库存数量 
+            //客户半年后去看自己购物车，这个商品是否失效
+            $val['is_on_sale'] = is_on_sale($val['goods_id']);       	
                 $anum += $val['goods_num'];
                 
                 // 如果要求只计算购物车选中商品的价格 和数量  并且  当前商品没选择 则跳过
@@ -202,8 +203,7 @@ class CartLogic extends RelationModel
                 
                 $cut_fee += $val['goods_num'] * $val['market_price'] - $val['goods_num'] * $val['member_goods_price'];                
         	$total_price += $val['goods_num'] * $val['member_goods_price'];
-            //客户半年后去看自己购物车，这个商品是否失效
-            $cartList[$k]['is_on_sale'] = is_on_sale($val['goods_id']);
+            
         }
 
         $total_price = array('total_fee' =>$total_price , 'cut_fee' => $cut_fee,'num'=> $anum,); // 总计
