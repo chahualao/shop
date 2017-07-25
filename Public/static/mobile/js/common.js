@@ -9,7 +9,7 @@
  * layer弹窗插件请参考http://layer.layui.com/mobile/
  */
 function AjaxAddCart(goods_id,num,to_catr)
-{                                   
+{                                                
     //如果有商品规格 说明是商品详情页提交
     if($("#buy_goods_form").length > 0){        
         $.ajax({
@@ -39,14 +39,23 @@ function AjaxAddCart(goods_id,num,to_catr)
 						success: function(data) {
 							cart_cn = Cookies.get('newcn');
 							$('#tp_cart_info').html(cart_cn)
+<<<<<<< HEAD
+=======
+						}
+					});
+>>>>>>> 7466108079a84549a0601872854b687e7286ea39
+
+							if($('#tp_cart_info').html()!==0){  //小红点
+								$("#tp_cart_info").show();
+							}else{
+								$("#tp_cart_info").hide();
+							}
+
 						}
 					});
 
-			    if($('#tp_cart_info').html()==0){  //小红点
-					$("#tp_cart_info").hide();
-				}else{
-					$("#tp_cart_info").show();
-				}
+
+			    
 			    mui.confirm('添加成功！','提示',['再逛逛', '去购物车'],function(e){
 			    	if (e.index == 0) {
 			    		

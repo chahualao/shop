@@ -112,6 +112,8 @@ class weixin extends RelationModel
         //printf_info($order);exit;  
         $jsApiParameters = $tools->GetJsApiParameters($order2);
         $html = <<<EOF
+    <link href="../../../Public/static/vendor/mui/mui.min.css" rel="stylesheet"/>
+    <script src="../../../Public/static/vendor/mui/mui.min.js"></script>
     <script type="text/javascript">
     //调用微信JS api 支付
     function jsApiCall()
@@ -123,10 +125,10 @@ class weixin extends RelationModel
                  if(res.err_msg == "get_brand_wcpay_request:ok") {
                     location.href='$go_url';
                  }else if(res.err_msg == "get_brand_wcpay_request:cancel"){
-                    alert('已取消支付');
+                    mui.alert('已取消支付');
                     location.href='$back_url';
                  }else if(res.err_msg == "get_brand_wcpay_request:fail"){
-                    alert('支付失败');
+                    mui.alert('支付失败');
                     location.href='$back_url';
                  }
             }
