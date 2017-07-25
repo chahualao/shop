@@ -81,7 +81,6 @@ class OrderController extends BaseController {
          } 
         //获取订单列表
         $orderList = $orderLogic->getOrderList($condition,$sort_order,$Page->firstRow,$Page->listRows);
-        echo M()->getLastSql();
         $this->assign('orderList',$orderList);
         $this->assign('page',$show);// 赋值分页输出
         $this->display();
