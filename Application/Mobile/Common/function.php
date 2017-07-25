@@ -12,7 +12,7 @@ function maybeYouLike($limit=5,$p=1){
 	}else{
 
 		//查询条件
-		$map = array();
+		$map = "is_on_sale=1";
 		if (!empty($search_keywords)) {
 			$map="is_on_sale=1 and keywords like '%$search_keywords%'";
 		}
@@ -24,7 +24,7 @@ function maybeYouLike($limit=5,$p=1){
 			$click_goods_cid = '('.$click_goods_cid.')';
 			$map="is_on_sale=1 and (cat_id in $click_goods_cid or keywords like '%$search_keywords%')";	
 		}
-		return M('goods')->where($map)->page($p,$limit)->cache(true,TPSHOP_CACHE_TIME)->select();
+		return M('goods')->where($map)->page($p,$limit)->select();
 	}
 
 }
