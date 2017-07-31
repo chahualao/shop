@@ -112,6 +112,7 @@ class weixin extends RelationModel
         //printf_info($order);exit;  
         $jsApiParameters = $tools->GetJsApiParameters($order2);
         $html = <<<EOF
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link href="../../../Public/static/vendor/mui/mui.min.css" rel="stylesheet"/>
     <script src="../../../Public/static/vendor/mui/mui.min.js"></script>
     <script type="text/javascript">
@@ -125,11 +126,13 @@ class weixin extends RelationModel
                  if(res.err_msg == "get_brand_wcpay_request:ok") {
                     location.href='$go_url';
                  }else if(res.err_msg == "get_brand_wcpay_request:cancel"){
-                    mui.alert('已取消支付');
-                    location.href='$back_url';
+                    mui.alert('已取消支付',function(){
+                        location.href='$back_url';
+                    });
                  }else if(res.err_msg == "get_brand_wcpay_request:fail"){
-                    mui.alert('支付失败');
-                    location.href='$back_url';
+                    mui.alert('支付失败',function(){
+                        location.href='$back_url';
+                    });
                  }
             }
         );
