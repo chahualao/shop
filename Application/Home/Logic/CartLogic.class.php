@@ -207,6 +207,8 @@ class CartLogic extends RelationModel
             //商品没有失效
             if($val['is_on_sale']){
                $total_price += $val['goods_num'] * $val['member_goods_price']; 
+            }else{
+                M('Cart')->where(array('id'=>$val['id']))->save(array('selected'=>0));
             }                
         	
             
