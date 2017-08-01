@@ -178,13 +178,13 @@ class CartLogic extends RelationModel
         
         if($user['user_id'])// 如果用户已经登录则按照用户id查询
         {
-             $where .= " and user_id = $user[user_id] ";
+             $where .= " and user_id = $user['user_id'] ";
              // 给用户计算会员价 登录前后不一样             
         }           
         else
         {
             $where .= " and session_id = '$session_id'";
-            $user[user_id] = 0;
+            $user['user_id'] = 0;
         }
 
                        
@@ -203,8 +203,12 @@ class CartLogic extends RelationModel
                 continue;
             }
                 
-            $cut_fee += $val['goods_num'] * $val['market_price'] - $val['goods_num'] * $val['member_goods_price'];                
-        	$total_price += $val['goods_num'] * $val['member_goods_price'];
+            $cut_fee += $val['goods_num'] * $val['market_price'] - $val['goods_num'] * $val['member_goods_price'];
+            //商品没有失效
+            if($val['is_on_sale']){
+               $total_price += $val['goods_num'] * $val['member_goods_price']; 
+            }                
+        	
             
         }
 
