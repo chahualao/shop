@@ -178,7 +178,7 @@ class CartLogic extends RelationModel
         
         if($user['user_id'])// 如果用户已经登录则按照用户id查询
         {
-             $where .= " and user_id = $user['user_id'] ";
+             $where .= " and user_id =  ".$user['user_id'];
              // 给用户计算会员价 登录前后不一样             
         }           
         else
