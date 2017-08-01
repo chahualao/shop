@@ -39,8 +39,6 @@ function AjaxAddCart(goods_id,num,to_catr)
 						success: function(data) {
 							cart_cn = Cookies.get('newcn');
 							$('#tp_cart_info').html(cart_cn)
-						}
-					});
 
 							if($('#tp_cart_info').html()!==0){  //小红点
 								$("#tp_cart_info").show();
