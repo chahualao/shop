@@ -77,8 +77,13 @@ class IndexController extends BaseController {
             $id_name = I('id_name'); // 表主键id名
             $id_value = I('id_value'); // 表主键id值
             $field  = I('field'); // 修改哪个字段
-            $value  = I('value'); // 修改字段值                        
-            M($table)->where("$id_name = $id_value")->save(array($field=>$value)); // 根据条件保存修改的数据
+            $value  = I('value'); // 修改字段值  
+            $data = array();
+            $data[$field]=$value;
+            /*if ($field == 'is_on_sale') {
+                
+            }*/                      
+            M($table)->where("$id_name = $id_value")->save($data); // 根据条件保存修改的数据
     }	    
 
 }
